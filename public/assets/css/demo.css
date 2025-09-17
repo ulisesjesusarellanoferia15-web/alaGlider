@@ -105,6 +105,24 @@
 }
 
 
+/** Estilos modificados
+******************************************************************************/
+
+/* Estilos para el menu y navbar*/
+.menu-inner {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Alinea verticalmente */
+    gap: 20px; /* Espacio entre elementos del menú */
+}
+
+@media (max-width: 768px) {
+    .menu-inner {
+      flex-direction: column;
+      justify-content: center;
+    }
+}
+
 /* Estilos para las diapositivas del carrusel */
 .slide-bg {
   background-size: cover;
