@@ -67,6 +67,9 @@
     <script src="../../assets/js/config.js"></script>
   </head>
 
+  @include('auth.register-modal')
+  @include('auth.login-modal')
+
   <body>
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
@@ -79,7 +82,7 @@
                 <a href="{{ url('/') }}" class="app-brand-link">
                   <span class="app-brand-logo demo">
                     <span class="text-primary">
-                      <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150px" />
+                      <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150rem" />
                     </span>
                   </span>
                 </a>
@@ -122,12 +125,16 @@
 
                     <!-- Ingresar -->
                     <li class="nav-item me-2">
-                      <a href="{{ route('login') }}" class="btn btn-outline-primary rounded-pill px-3">Ingresar</a>
+                      <button type="button" class="btn btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        Ingresar
+                      </button>
                     </li>
 
                     <!-- Únete -->
                     <li class="nav-item">
-                      <a href="{{ route('register') }}" class="btn btn-primary rounded-pill px-3">Únete</a>
+                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        Únete
+                      </button>
                     </li>
                   @endguest
 
