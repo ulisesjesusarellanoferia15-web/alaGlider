@@ -9,18 +9,29 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        // Obtener todas las categorías
-        $categories = Category::all();
-
-        // Pasarlas a la vista
+        // Cargar todas las categorías para mostrarlas en el index
+        $categories = Category::orderBy('name')->get();
         return view('index', compact('categories'));
     }
 
-    public function showCategory($id)
+    public function show($slug)
 {
-    $category = Category::where('id', $id)->firstOrFail();
+    // Buscar categoría por slug
+    $category = Category::where('slug', $slug)->firstOrFail();
 
-    // Aquí puedes pasar los productos o contenido relacionado
-    return view('category', compact('category'));
+    //"Diseño Gráfico"
+    if ($category->slug === 'diseno-grafico') {
+        return view('categories.diseno-grafico', compact('category'));
+    }
+
+    //"Estructura y Traducción", otra vista especial
+    if ($category->slug === 'estructura-y-traduccion') {
+        return view('categories.estructura-traduccion', compact('category'));
+    }
+
+    //Todas las demás usan la genérica
+    return view('categories.show', compact('category'));
 }
+
 }
+

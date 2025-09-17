@@ -192,22 +192,24 @@
         <div class="layout-page">
           <!-- Content wrapper -->
           <div class="content-wrapper">
+
+
             <!-- Menu -->
             <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu flex-grow-0">
               <div class="container-xxl d-flex h-100 justify-content-center align-items-center">
                 <ul class="menu-inner">
-                  @foreach($categories as $category)
-                    <li class="menu-item">
-                      <a href="{{ url('category/'.$category->name) }}" class="menu-link">
-                        <!--<i class="menu-icon icon-base ti tabler-layout-grid"></i>-->
-                        <div>{{ $category->name }}</div>
-                      </a>
-                    </li>
-                  @endforeach
+                    @foreach($categories as $category)
+                        <li class="menu-item">
+                        <a href="{{ route('categories.show', $category->slug) }}" class="menu-link">
+                            {{ $category->name }}
+                        </a>
+                        </li>
+                    @endforeach
                 </ul>
               </div>
             </aside>
             <!-- / Menu -->
+
 
 
             <!-- Content -->
@@ -218,7 +220,7 @@
                   <div
                     class="swiper-container swiper-container-horizontal swiper swiper-card-advance-bg"
                     id="swiper-with-pagination-cards" style="height: 400px;">
-                    
+
                     <div class="swiper-wrapper">
 
                       <!-- Slide 1 -->

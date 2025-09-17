@@ -4,14 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+// Página de inicio (index)
+Route::get('/', [CategoryController::class, 'index'])->name('index');
 
-// Mostrar categorías
-Route::get('/', [CategoryController::class, 'index'])->name('home');
-Route::get('/category/{name}', [CategoryController::class, 'show'])->name('category.show');
-
+// Mostrar categoría individual
+Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Registro
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
@@ -23,6 +20,8 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 
 
 /*
