@@ -103,3 +103,28 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+
+/* Estilos para las diapositivas del carrusel */
+.slide-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 400px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45); /* overlay oscuro para contraste */
+}
+
+.slide-bg .col-12 {
+  position: relative; /* para que el texto quede encima del overlay */
+  z-index: 1;
+}

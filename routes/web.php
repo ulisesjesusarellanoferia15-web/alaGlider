@@ -2,10 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
+// Mostrar categorías
+Route::get('/', [CategoryController::class, 'index'])->name('home');
+Route::get('/category/{name}', [CategoryController::class, 'show'])->name('category.show');
+
 
 // Registro
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
