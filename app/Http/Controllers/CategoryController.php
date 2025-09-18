@@ -24,9 +24,9 @@ class CategoryController extends Controller
         return view('categories.diseno-grafico', compact('category'));
     }
 
-    //"Estructura y Traducción", otra vista especial
-    if ($category->slug === 'estructura-y-traduccion') {
-        return view('categories.estructura-traduccion', compact('category'));
+    //"Escritura y Traducción", otra vista especial
+    if ($category->slug === 'escritura-y-traduccion') {
+        return view('categories.escritura-traduccion', compact('category'));
     }
 
     //Todas las demás usan la genérica
