@@ -22,6 +22,9 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
+use App\Http\Controllers\FlightController;
+
+Route::get('/', [FlightController::class, 'index'])->name('home');
 
 
 /*
