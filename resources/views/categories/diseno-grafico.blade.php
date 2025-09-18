@@ -35,7 +35,7 @@
           </aside>
 
           {{-- Contenido principal --}}
-          <div class="container my-5">
+          <div class="container section-spacing mb-5">
             <h2 class="text-center mb-5">{{ $category->name }}</h2>
 
             <div class="row justify-content-center">

@@ -146,3 +146,14 @@
   position: relative; /* para que el texto quede encima del overlay */
   z-index: 1;
 }
+
+/* iconos */
+.social-icon {
+  width: 40px;
+  height: 40px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.social-icon:hover {
+  opacity: 0.6;
+}
