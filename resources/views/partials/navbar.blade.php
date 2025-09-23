@@ -1,5 +1,3 @@
-<nav class="layout-navbar navbar navbar-expand-xl align-items-center" id="layout-navbar">
-  <div class="container-xxl">
 
     <!-- Navbar -->
           <nav class="layout-navbar navbar navbar-expand-xl align-items-center" id="layout-navbar">
@@ -120,11 +118,4 @@
               </div>
             </div>
           </nav>
-        <!-- / Navbar -->
-
-
-
-
-
-  </div>
-</nav>
+   

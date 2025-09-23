@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubcategoryController;
 
 // Página de inicio (index)
 Route::get('/', [CategoryController::class, 'index'])->name('index');
@@ -26,7 +27,8 @@ use App\Http\Controllers\FlightController;
 
 Route::get('/', [FlightController::class, 'index'])->name('home');
 
-
+Route::get('/categories/{id}/subcategories', [SubcategoryController::class, 'byCategory'])
+     ->name('categories.subcategories');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
