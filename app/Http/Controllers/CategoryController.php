@@ -24,9 +24,29 @@ class CategoryController extends Controller
         return view('categories.diseno-grafico', compact('category'));
     }
 
-    //"Escritura y Traducción", otra vista especial
+    //"Escritura y Traducción"
     if ($category->slug === 'escritura-y-traduccion') {
         return view('categories.escritura-traduccion', compact('category'));
+    }
+
+    //"Marketing digital"
+    if ($category->slug === 'marketing-digital') {
+        return view('categories.marketing-digital', compact('category'));
+    }
+
+    //"programacion-y-desarrollo"
+    if ($category->slug === 'programacion-y-desarrollo') {
+        return view('categories.programacion-y-desarrollo', compact('category'));
+    }
+
+    //"video-y-animacion"
+    if ($category->slug === 'video-y-animacion') {
+        return view('categories.video-y-animacion', compact('category'));
+    }
+
+    //"musica-y-audio"
+    if ($category->slug === 'musica-y-audio') {
+        return view('categories.musica-y-audio', compact('category'));
     }
 
     //Todas las demás usan la genérica

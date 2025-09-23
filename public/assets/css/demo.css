@@ -147,7 +147,7 @@
   z-index: 1;
 }
 
-/* iconos */
+/* iconos social-icon*/
 .social-icon {
   width: 40px;
   height: 40px;
@@ -156,4 +156,43 @@
 
 .social-icon:hover {
   opacity: 0.6;
+}
+
+
+.section-spacing {
+  margin-top: 100px;  /* ajusta el número según lo que necesites */
+}
+
+/* --- Subcategorías Diseño Gráfico --- */
+.subcat-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.subcat-card img {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.subcat-card:hover img {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+.subcat-card h5 {
+  margin-top: 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.subcat-card:hover h5 {
+  color: #0d6efd; /* Azul Bootstrap */
+}
+
+/* Responsividad: 1 por fila en móvil, 2 en tablet, 4 en escritorio */
+@media (max-width: 576px) {
+  .subcat-card img {
+    width: 100%;
+  }
 }

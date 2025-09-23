@@ -24,7 +24,7 @@
             <div class="container-xxl d-flex h-100 justify-content-center align-items-center">
               <ul class="menu-inner">
                 @foreach($categories as $category)
-                  <li class="menu-item {{ $category->slug === 'escritura-y-traduccion' ? 'active' : '' }}">
+                  <li class="menu-item {{ $category->slug === 'diseno-grafico' ? 'active' : '' }}">
                     <a href="{{ route('categories.show', $category->slug) }}" class="menu-link">
                       {{ $category->name }}
                     </a>
@@ -33,42 +33,50 @@
               </ul>
             </div>
           </aside>
+          <br><br><br><br><br>
 
           {{-- Contenido principal --}}
-          <div class="container my-5">
-            <h2 class="text-center mb-5">{{ $category->name }}</h2>
+          <div class="container section-spacing mb-5">
+            <h2 class="text-center mb-5">Diseño Grafico</h2>
 
             <div class="row justify-content-center">
-              <!-- Cartas -->
+              <!-- Logo -->
               <div class="col-md-3 col-sm-6 mb-4 text-center">
                 <img src="{{ asset('assets/img/front-pages/diseno/logo.jpg') }}" class="img-fluid rounded" alt="Logo">
-                <h5 class="mt-2">Cartas</h5>
+                <h5 class="mt-2">Logo</h5>
               </div>
 
-              <!-- Traducción -->
+              <!-- Diseño de juegos -->
               <div class="col-md-3 col-sm-6 mb-4 text-center">
                 <img src="{{ asset('assets/img/front-pages/diseno/games.jpg') }}" class="img-fluid rounded" alt="Diseño de juegos">
-                <h5 class="mt-2">Traducción</h5>
+                <h5 class="mt-2">Diseño de juegos</h5>
               </div>
 
-              <!-- Artículos y blogs-->
+              <!-- 3D -->
               <div class="col-md-3 col-sm-6 mb-4 text-center">
                 <img src="{{ asset('assets/img/front-pages/diseno/3d.jpg') }}" class="img-fluid rounded" alt="3D">
-                <h5 class="mt-2">Artículos y blogs</h5>
+                <h5 class="mt-2">3D</h5>
               </div>
 
-              <!-- Libreto de podcast -->
+              <!-- Ilustraciones -->
               <div class="col-md-3 col-sm-6 mb-4 text-center">
                 <img src="{{ asset('assets/img/front-pages/diseno/ilustraciones.jpg') }}" class="img-fluid rounded" alt="Ilustraciones">
-                <h5 class="mt-2">Libreto de podcast</h5>
+                <h5 class="mt-2">Ilustraciones</h5>
               </div>
             </div>
           </div>
 
         </div>
+
       </div>
+        @include('partials.footer')
+
 
     </div>
   </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
