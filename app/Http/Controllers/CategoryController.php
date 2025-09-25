@@ -15,43 +15,59 @@ class CategoryController extends Controller
     }
 
     public function show($slug)
-{
-    // Buscar categoría por slug
-    $category = Category::where('slug', $slug)->firstOrFail();
+    {
+        // Buscar categoría por slug
+        $category = Category::where('slug', $slug)->firstOrFail();
 
-    //"Diseño Gráfico"
-    if ($category->slug === 'diseno-grafico') {
-        return view('categories.diseno-grafico', compact('category'));
+        //"Diseño Gráfico"
+        if ($category->slug === 'diseno-grafico') {
+            return view('categories.diseno-grafico', compact('category'));
+        }
+
+        //"Escritura y Traducción"
+        if ($category->slug === 'escritura-y-traduccion') {
+            return view('categories.escritura-traduccion', compact('category'));
+        }
+
+        //"Marketing digital"
+        if ($category->slug === 'marketing-digital') {
+            return view('categories.marketing-digital', compact('category'));
+        }
+
+        //"programacion-y-desarrollo"
+        if ($category->slug === 'programacion-y-desarrollo') {
+            return view('categories.programacion-y-desarrollo', compact('category'));
+        }
+
+        //"video-y-animacion"
+        if ($category->slug === 'video-y-animacion') {
+            return view('categories.video-y-animacion', compact('category'));
+        }
+
+        //"musica-y-audio"
+        if ($category->slug === 'musica-y-audio') {
+            return view('categories.musica-y-audio', compact('category'));
+        }
+
+        //Todas las demás usan la genérica
+        return view('categories.show', compact('category'));
     }
 
-    //"Escritura y Traducción"
-    if ($category->slug === 'escritura-y-traduccion') {
-        return view('categories.escritura-traduccion', compact('category'));
+    //sub categorias
+    public function showSubcategory($categorySlug, $subcategorySlug)
+    {
+        $category = Category::where('slug', $categorySlug)->firstOrFail();
+
+        // Ruta de la vista dentro de categories/subcategories/
+        $viewPath = "categories.subcategories.$categorySlug.$subcategorySlug";
+
+        if (view()->exists($viewPath)) {
+            return view($viewPath, compact('category', 'subcategorySlug'));
+        }
+
+        // Si no existe, carga una vista genérica
+        return view("categories.subcategories.generic", compact('category', 'subcategorySlug'));
     }
 
-    //"Marketing digital"
-    if ($category->slug === 'marketing-digital') {
-        return view('categories.marketing-digital', compact('category'));
-    }
 
-    //"programacion-y-desarrollo"
-    if ($category->slug === 'programacion-y-desarrollo') {
-        return view('categories.programacion-y-desarrollo', compact('category'));
-    }
-
-    //"video-y-animacion"
-    if ($category->slug === 'video-y-animacion') {
-        return view('categories.video-y-animacion', compact('category'));
-    }
-
-    //"musica-y-audio"
-    if ($category->slug === 'musica-y-audio') {
-        return view('categories.musica-y-audio', compact('category'));
-    }
-
-    //Todas las demás usan la genérica
-    return view('categories.show', compact('category'));
 }
-
-}
-

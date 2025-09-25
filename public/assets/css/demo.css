@@ -79,6 +79,7 @@
   }
 }
 
+
 /*
 * Layout demo
 ******************************************************************************/
@@ -196,3 +197,92 @@
     width: 100%;
   }
 }
+
+.ag-card {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #fff;
+  transition: transform 0.2s ease;
+}
+.ag-card:hover {
+  transform: translateY(-5px);
+}
+
+.ag-card-image {
+  height: 180px;
+  object-fit: cover;
+}
+
+.ag-card-body {
+  padding: 15px;
+}
+
+.price {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.actions i {
+  cursor: pointer;
+  color: #555;
+  transition: color 0.2s;
+}
+.actions i:hover {
+  color: #28a745;
+}
+
+
+/* Flechas azul oscuro */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-image: none;
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.carousel-control-prev-icon::after,
+.carousel-control-next-icon::after {
+    content: '';
+    display: inline-block;
+    border: solid #2c2f48;
+    border-width: 0 0.35rem 0.35rem 0;
+    padding: 0.5rem;
+}
+
+.carousel-control-prev-icon::after {
+    transform: rotate(135deg);
+}
+
+.carousel-control-next-icon::after {
+    transform: rotate(-45deg);
+}
+
+/* Animación fade para Bootstrap 4 */
+/* Fade para Bootstrap 4 */
+.carousel.carousel-fade .carousel-item {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  left: 0 !important;   /* Evita que se desplacen lateralmente */
+  transform: none !important;
+}
+
+.carousel.carousel-fade .carousel-item.active {
+  opacity: 1;
+}
+
+.carousel.carousel-fade .carousel-item-next,
+.carousel.carousel-fade .carousel-item-prev,
+.carousel.carousel-fade .carousel-item.active.carousel-item-left,
+.carousel.carousel-fade .carousel-item.active.carousel-item-right {
+  opacity: 0;
+}
+
+.carousel.carousel-fade .carousel-item-next.carousel-item-left,
+.carousel.carousel-fade .carousel-item-prev.carousel-item-right {
+  opacity: 1;
+}
+
+
+

@@ -11,6 +11,10 @@ Route::get('/', [CategoryController::class, 'index'])->name('index');
 // Mostrar categoría individual
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 
+// Subcategorías
+Route::get('/category/{categorySlug}/{subcategorySlug}', [CategoryController::class, 'showSubcategory'])
+    ->name('subcategories.show');
+
 // Registro
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
@@ -29,6 +33,8 @@ Route::get('/', [FlightController::class, 'index'])->name('home');
 
 Route::get('/categories/{id}/subcategories', [SubcategoryController::class, 'byCategory'])
      ->name('categories.subcategories');
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
