@@ -1,14 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
+use App\Http\Controllers\FlightController;
+use App\Http\Controllers\AuthController;
 
-// Página de inicio (index)
-Route::get('/', [CategoryController::class, 'index'])->name('index');
+// ===============================
+// PÁGINA PRINCIPAL
+// ===============================
+/*Route::get('/', function () {
+    return view('index');
+})->name('index');*/
+Route::get('/', [FlightController::class, 'index'])->name('index');
 
-// Mostrar categoría individual
+// ===============================
+// CATEGORÍAS
+// ===============================
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categories.show');
 
 // Subcategorías
@@ -18,16 +29,29 @@ Route::get('/category/{categorySlug}/{subcategorySlug}', [CategoryController::cl
 // Registro
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+// ===============================
+// SUBCATEGORÍAS
+// ===============================
+Route::get('/categories/{id}/subcategories', [SubcategoryController::class, 'byCategory'])
+    ->name('categories.subcategories');
 
-// Login
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-// Logout
+// ===============================
+// REGISTRO Y VERIFICACIÓN
+// ===============================
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/verify', [RegisterController::class, 'verify'])->name('verify.user');
+
+// ===============================
+// LOGIN
+// ===============================
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+// ===============================
+// LOGOUT
+// ===============================
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-use App\Http\Controllers\FlightController;
 
 Route::get('/', [FlightController::class, 'index'])->name('home');
 

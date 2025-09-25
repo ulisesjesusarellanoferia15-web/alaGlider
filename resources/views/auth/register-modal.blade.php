@@ -7,20 +7,20 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
       <div class="modal-body">
-        <form id="formRegister" method="POST" action="{{ route('register') }}">
+        <form id="registerForm">
           @csrf
           <div class="row g-3">
             
             <!-- Nombre(s) -->
             <div class="col-md-6">
               <label for="name" class="form-label">Nombre(s)</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Ej. Ulises" required>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Nombre(s)" required>
             </div>
 
             <!-- Apellidos -->
             <div class="col-md-6">
               <label for="lastname" class="form-label">Apellidos</label>
-              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Ej. Arellano Feria" required>
+              <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellidos" required>
             </div>
 
             <!-- Nombre de usuario -->
@@ -29,22 +29,23 @@
               <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required>
             </div>
 
-            <!-- Género y País en la misma fila -->
+            <!-- Género y País -->
             <div class="col-md-3">
-              <label for="gender" class="form-label">Género</label>
-              <select class="form-select" id="gender" name="gender" required>
+              <label for="sex_id" class="form-label">Género</label>
+              <select class="form-select" id="sex_id" name="sex_id" required>
                 <option value="">Seleccione...</option>
-                <option value="Masculino">Masculino</option>
-                <option value="Femenino">Femenino</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+                <option value="3">Otro</option>
               </select>
             </div>
 
             <div class="col-md-3">
-              <label for="country" class="form-label">País</label>
-              <select class="form-select" id="country" name="country" required>
+              <label for="id_country" class="form-label">País</label>
+              <select class="form-select" id="id_country" name="id_country" required>
                 <option value="">Seleccione...</option>
-                <option value="México">México</option>
-                <option value="Colombia">Colombia</option>
+                <option value="7263ba2f-23c3-484c-a76c-d7ca66d8413c">México</option>
+                <option value="99628bad-7485-4267-afcf-82b4b98d5317">Colombia</option>
               </select>
             </div>
 
@@ -75,7 +76,7 @@
 
           <!-- Botón de registro -->
           <div class="mt-4">
-            <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+            <button type="button" class="btn btn-primary w-100">Registrarse</button>
           </div>
 
           <!-- Enlace para iniciar sesión -->
@@ -92,3 +93,35 @@
     </div>
   </div>
 </div>
+
+<script>
+document.getElementById('verifyForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    let form = this;
+    let formData = new FormData(form);
+
+    // Coloca el email del input oculto
+    formData.set('email', document.getElementById('verifyEmail').value);
+
+    fetch("{{ route('verify.user') }}", {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": "{{ csrf_token() }}",
+            "Accept": "application/json"
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        if(data.success){
+            var verifyModal = bootstrap.Modal.getInstance(document.getElementById('verificationModal'));
+            verifyModal.hide();
+            console.log(data);
+            //window.location.href = "{{ route('index') }}";
+        }
+    })
+    .catch(err => console.error(err));
+});
+
+</script>

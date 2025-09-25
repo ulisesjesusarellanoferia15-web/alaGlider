@@ -110,19 +110,47 @@
 ******************************************************************************/
 
 /* Estilos para el menu y navbar*/
+/* Estilos generales del menú */
 .menu-inner {
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Alinea verticalmente */
-    gap: 20px; /* Espacio entre elementos del menú */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 @media (max-width: 768px) {
-    .menu-inner {
-      flex-direction: column;
-      justify-content: center;
-    }
+  .menu-inner {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
+
+/* Botones del menú */
+.menu-inner .menu-link {
+  padding: 8px 18px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #007bff; /* Azul por defecto */
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px solid transparent; /* Para que no brinque al activarse */
+}
+
+/* Hover */
+.menu-inner .menu-link:hover {
+  background-color: #00ccff;
+  color: #fff;
+}
+
+/* Activo (seleccionado) */
+.menu-inner .menu-link.active {
+  background-color: #28a745 !important; /* Verde */
+  color: #fff !important; /* Texto blanco */
+  border: 2px solid #28a745 !important;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+
 
 /* Estilos para las diapositivas del carrusel */
 .slide-bg {
