@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Flight extends Model
 {
-    protected $fillable = ['name', 'description', 'id_freelancer'];
+    protected $fillable = ['name', 'description', 'id_freelancer','picture_url'];
 
     // Relación con freelancer (si tienes tabla users o freelancers)
     public function freelancer()
