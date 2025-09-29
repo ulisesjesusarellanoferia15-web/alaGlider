@@ -76,7 +76,7 @@
 
           <!-- Botón de registro -->
           <div class="mt-4">
-            <button type="button" class="btn btn-primary w-100">Registrarse</button>
+            <button type="submit" class="btn btn-primary w-100" id="registerButton">Registrarse</button>
           </div>
 
           <!-- Enlace para iniciar sesión -->
@@ -95,15 +95,13 @@
 </div>
 
 <script>
-document.getElementById('verifyForm').addEventListener('submit', function(e){
+document.getElementById('registerForm').addEventListener('submit', function(e) {
     e.preventDefault();
+
     let form = this;
     let formData = new FormData(form);
 
-    // Coloca el email del input oculto
-    formData.set('email', document.getElementById('verifyEmail').value);
-
-    fetch("{{ route('verify.user') }}", {
+    fetch("{{ route('register') }}", {
         method: "POST",
         headers: {
             "X-CSRF-TOKEN": "{{ csrf_token() }}",
@@ -113,15 +111,28 @@ document.getElementById('verifyForm').addEventListener('submit', function(e){
     })
     .then(res => res.json())
     .then(data => {
-        alert(data.message);
-        if(data.success){
-            var verifyModal = bootstrap.Modal.getInstance(document.getElementById('verificationModal'));
-            verifyModal.hide();
-            console.log(data);
-            //window.location.href = "{{ route('index') }}";
+        console.log(data);
+        if (data.success) {
+            alert(data.message);
+
+            // Cerrar modal de registro
+            let registerModal = bootstrap.Modal.getInstance(document.getElementById('registerModal'));
+            registerModal.hide();
+
+            // Establecer el email en el modal de verificación
+            document.getElementById('verifyEmail').value = document.getElementById('email').value;
+
+            // Abrir el modal de verificación automáticamente
+            let verifyModal = new bootstrap.Modal(document.getElementById('verificationModal'));
+            verifyModal.show();
+        } else {
+            alert('Error: ' + data.message);
         }
     })
-    .catch(err => console.error(err));
+    .catch(error => {
+        console.error(error);
+        alert("Error en la petición AJAX (registro)");
+    });
 });
-
 </script>
+
