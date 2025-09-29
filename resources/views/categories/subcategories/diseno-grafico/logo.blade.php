@@ -1,5 +1,6 @@
 @extends('partials.master')
 @section('content')
+<section class="align-content-center mt-4">
     <div class="container">
         <h2 class="text-bold text-center mb-4">Diseño Gráfico - Logos</h2>
 
@@ -93,5 +94,5 @@
             </div>
         </div>
     </div>
-
+</section>
 @endsection

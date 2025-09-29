@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Subcategory;
 
 class CategoryController extends Controller
 {
@@ -56,18 +57,17 @@ class CategoryController extends Controller
     //sub categorias
     public function showSubcategory($categorySlug, $subcategorySlug)
     {
+        // Buscar categoría
         $category = Category::where('slug', $categorySlug)->firstOrFail();
 
-        // Ruta de la vista dentro de categories/subcategories/
-        $viewPath = "categories.subcategories.$categorySlug.$subcategorySlug";
+        // Buscar subcategoría
+        $subcategory = Subcategory::where('slug', $subcategorySlug)
+            ->where('id_categorie', $category->id) // ✅ usa el nombre real de tu campo
+            ->firstOrFail();
 
-        if (view()->exists($viewPath)) {
-            return view($viewPath, compact('category', 'subcategorySlug'));
-        }
+        // Aquí más adelante vamos a traer los vuelos/productos relacionados
+        $flights = [];
 
-        // Si no existe, carga una vista genérica
-        return view("categories.subcategories.generic", compact('category', 'subcategorySlug'));
+        return view('categories.subcategory', compact('category', 'subcategory', 'flights'));
     }
-
-
 }
