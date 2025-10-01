@@ -14,7 +14,6 @@ class RegisterController extends Controller
 {
     public function register(Request $request)
     {
-        dd($request->all());
         // Validación de los campos según tu formulario
         $request->validate([
             'name' => 'required|string|max:255',
@@ -46,13 +45,14 @@ class RegisterController extends Controller
             'lastname' => $request->lastname,
             'picture_profile' => $request->picture_profile ?? null,
             'id_country' => $request->id_country,
-            'state' => $request->state ?? null,
-            'delegation' => $request->delegation ?? null,
+            'state_id' => $request->state_id ?? null,
+            'delegation_id' => $request->delegation_id ?? null,
             'sex_id' => $request->sex_id,
             'delivery_date' => $request->delivery_date ?? null,
             'phone' => $request->phone,
             'identificate' => $request->identificate ?? null,
-            'provider' => $request->provider ?? null,
+            'status_id' => 1, // Activo por default
+            'provider_id' => $request->provider ?? null,
             'social_id' => $request->social_id ?? null,
             'profile_id' => 3, // Rider por default
             'id_inicio_sesion' => $inicioSesion->id,

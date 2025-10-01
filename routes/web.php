@@ -26,9 +26,9 @@ Route::get('/category/{slug}', [CategoryController::class, 'show'])->name('categ
 Route::get('/category/{categorySlug}/{subcategorySlug}', [CategoryController::class, 'showSubcategory'])->name('subcategories.show');
 Route::get('/categorias/{categorySlug}/{subcategorySlug}', [CategoryController::class, 'showSubcategory'])->name('categories.subcategory');
 
-// Registro
+/* Registro
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/register', [AuthController::class, 'register'])->name('register.post');
+Route::post('/register', [AuthController::class, 'register'])->name('register.post');*/
 // ===============================
 // SUBCATEGORÍAS
 // ===============================
