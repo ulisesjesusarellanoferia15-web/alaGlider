@@ -27,5 +27,10 @@ class AppServiceProvider extends ServiceProvider
     {
         // Comparte categories en todas las vistas
         View::share('categories', Category::orderBy('name')->get());
+
+        // Compartir categorías en todas las vistas
+        View::composer('partials.footer', function ($view) {
+            $view->with('categories', Category::all());
+        });
     }
 }

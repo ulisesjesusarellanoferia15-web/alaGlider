@@ -12,7 +12,7 @@
             @endforeach
         </ul>
     @else
-        <p>No hay productos aún.</p>
+        <p>No hay productos disponibles.</p>
     @endif
 </section>
 

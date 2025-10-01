@@ -68,7 +68,7 @@
 
                             <!-- Bases de Datos -->
                             <div class="col-12 col-sm-6 col-md-3 mb-4 text-center">
-                                <a href="{{ url('/category/marketing-digital/db') }}" class="subcat-card">
+                                <a href="{{ url('/category/programacion-y-desarrollo/db') }}" class="subcat-card">
                                     <img src="{{ asset('assets/img/front-pages/programacionydesarrollo/db.jpg') }}" class="img-fluid" alt="Diseño de juegos">
                                     <h5 class="mt-2">Bases de Datos</h5>
                                 </a>

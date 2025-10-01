@@ -52,7 +52,7 @@
 
                             <!-- Traducción -->
                             <div class="col-12 col-sm-6 col-md-3 mb-4 text-center">
-                                <a href="{{ url('/category/escritura-y-traduccion/tradicciones') }}" class="subcat-card">
+                                <a href="{{ url('/category/escritura-y-traduccion/traducciones') }}" class="subcat-card">
                                     <img src="{{ asset('assets/img/front-pages/escrituraTraduccion/traducciones.jpg') }}" class="img-fluid" alt="Diseño de juegos">
                                     <h5 class="mt-2">Traducción</h5>
                                 </a>

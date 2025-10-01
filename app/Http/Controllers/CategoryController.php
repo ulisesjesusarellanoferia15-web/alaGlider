@@ -62,12 +62,15 @@ class CategoryController extends Controller
 
         // Buscar subcategoría
         $subcategory = Subcategory::where('slug', $subcategorySlug)
-            ->where('id_categorie', $category->id) // ✅ usa el nombre real de tu campo
+            ->where('id_categorie', $category->id)
             ->firstOrFail();
 
-        // Aquí más adelante vamos a traer los vuelos/productos relacionados
-        $flights = [];
+        // Traer todas las categorías para el menú
+        $categories = Category::orderBy('name')->get();
 
-        return view('categories.subcategory', compact('category', 'subcategory', 'flights'));
+        // Cargar vuelos relacionados a esa subcategoría
+    $flights = \App\Models\Flight::where('id_subcategorie', $subcategory->id)->get();
+
+        return view('categories.subcategories.generic', compact('category', 'subcategory', 'flights', 'subcategorySlug', 'categories'));
     }
 }

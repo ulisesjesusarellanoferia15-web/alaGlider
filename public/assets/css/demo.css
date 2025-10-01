@@ -113,6 +113,132 @@
   margin-top: 1rem;
 }
 
+/** ===========================
+    ESTILOS FOOTER + CTA
+=============================== */
+
+/* Contenedor del recuadro flotante */
+.footer-cta-wrapper {
+  position: relative;
+  background: transparent;
+  margin-top: 2rem;
+}
+
+/* Tarjeta de suscripción */
+.card-cta {
+  position: absolute;
+  top: -100px; /* controla cuánto "flota" sobre el footer */
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #3120E0 -  0%, #00B1EB 100%); /* degradado azul -> turquesa */
+  color: #fff;
+  max-width: 980px;
+  width: 85%;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  text-align: center;
+  z-index: 10;
+}
+
+.card-cta .cta-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* inputs y botones dentro del CTA */
+.card-cta .form-control {
+  background: #fff;
+  border: 0;
+  height: 48px;
+  border-radius: 25px;
+  box-shadow: none;
+}
+
+.card-cta .btn-outline-light {
+  border-color: rgba(255,255,255,0.6);
+  color: #fff;
+  border-radius: 25px;
+  padding: 0 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.card-cta .btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+/* Footer */
+.site-footer {
+  background: #070707; /* negro */
+  border-radius: 60px 60px 0 0; /* borde redondeado superior */
+  padding-top: 150px; /* espacio extra para el CTA flotante */
+  padding-bottom: 2rem;
+  margin-top: 5rem;
+}
+
+/* Títulos de secciones del footer en blanco */
+.footer-heading {
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* enlaces del footer */
+.site-footer a.text-white {
+  color: #ffffff !important;
+  opacity: 0.95;
+}
+
+.site-footer a.text-white:hover {
+  color: #e6f7ff !important;
+  text-decoration: none;
+}
+
+/* Responsivo */
+@media (max-width: 767.98px) {
+  .card-cta {
+    top: -80px;
+    padding: 1.5rem;
+    width: 90%;
+  }
+
+  .card-cta .cta-title {
+    font-size: 1.25rem;
+  }
+
+  .site-footer {
+    padding-top: 120px;
+  }
+}
+.footer-link {
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  opacity: 0.8;
+  background-color: #42EB87;
+  transform: translateX(4px); /* pequeño desplazamiento a la derecha */
+}
+
+.footer-link-info {
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  padding: 3px 8px;
+  display: inline-block;
+}
+
+.footer-link-info:hover {
+  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+
 
 /** Estilos modificados
 ******************************************************************************/

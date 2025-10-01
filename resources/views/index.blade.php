@@ -84,7 +84,7 @@
                             $profileImage = $profileImages[$index % count($profileImages)] ?? null;
                         @endphp
                         @if($profileImage)
-                            <img src="{{ asset('storage/profiles/' . $profileImage) }}" 
+                            <img src="{{ asset('storage/profiles/' . $profileImage) }}"
                                  alt="Perfil" class="rounded-circle" width="50" height="50">
                         @endif
                     </div>

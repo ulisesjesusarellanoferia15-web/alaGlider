@@ -1,50 +1,49 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <title>{{ ucfirst($subcategorySlug) }} - {{ $category->name }} | AlaGlider</title>
-  <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
-</head>
-<body>
-  <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
-    <div class="layout-container">
+@extends('partials.master')
+@section('content')
+<section class="align-content-center mt-4">
+    <div class="container">
+        <h2 class="text-bold text-center mb-4">{{ $category->name }} - {{ $subcategory->name }}</h2>
 
-      {{-- Navbar --}}
-      @include('partials.navbar')
-
-      <div class="layout-page">
-        <div class="content-wrapper">
-
-            {{-- Menú dinámico de categorías --}}
-                    <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu flex-grow-0">
-                        <div class="container-xxl d-flex h-100 justify-content-center align-items-center">
-                            <ul class="menu-inner">
-                                @foreach($categories as $category)
-                                <li class="menu-item {{ $category->slug === 'diseno-grafico' ? 'active' : '' }}">
-                                    <a href="{{ route('categories.show', $category->slug) }}" class="menu-link">
-                                        {{ $category->name }}
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
+        <div class="row">
+            @forelse($flights as $flight)
+                <div class="col-md-4 mb-4">
+                    <div class="ag-card">
+                        {{-- Carrusel (ejemplo: una sola imagen del vuelo) --}}
+                        <div id="flightCarousel{{ $flight->id }}" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="d-block w-100 rounded-top ag-card-image"
+                                         src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.jpg') }}"
+                                         alt="{{ $flight->name }}">
+                                </div>
+                            </div>
                         </div>
-                    </aside>
 
-          <div class="container mt-5 mb-5 text-center">
-            <h2>{{ ucfirst(str_replace('-', ' ', $subcategorySlug)) }}</h2>
-            <p class="text-muted">
-              Aquí pronto mostraremos contenido para <strong>{{ ucfirst(str_replace('-', ' ', $subcategorySlug)) }}</strong>
-              dentro de la categoría <strong>{{ $category->name }}</strong>.
-            </p>
-          </div>
+                        {{-- Info del card --}}
+                        <div class="ag-card-body">
+                            <div class="d-flex align-items-center mb-2">
+                                <img class="rounded-circle border me-2" width="32" height="32"
+                                     src="{{ asset('assets/img/avatars/1.png') }}" alt="Freelancer">
+                                <span class="fw-bold">{{ $flight->freelancer->name ?? 'Freelancer' }}</span>
+                            </div>
+                            <h5 class="mb-2">{{ $flight->name }}</h5>
+                            <p class="mb-2 text-muted">{{ $flight->description }}</p>
 
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price text-success fw-bold">Desde $30.00</span>
+                                <div class="actions">
+                                    <i class="far fa-heart mx-1"></i>
+                                    <i class="fas fa-share-alt mx-1"></i>
+                                    <i class="fas fa-cart-plus mx-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <p class="text-center">No hay productos disponibles en esta subcategoría.</p>
+            @endforelse
         </div>
-      </div>
-
-      @include('partials.footer')
-
     </div>
-  </div>
-</body>
-</html>
+</section>
+@endsection
