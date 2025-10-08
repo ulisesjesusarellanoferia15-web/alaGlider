@@ -1,5 +1,5 @@
-<footer class="bg-black text-light position-relative"
-    style="border-radius: 80px 80px 0 0; padding-top: 180px;">
+<footer class="site-footer text-light position-relative"
+        style="border-radius: 80px 80px 0 0; padding-top: 180px;">
 
 
     <!-- Bloque Azul (Newsletter) -->

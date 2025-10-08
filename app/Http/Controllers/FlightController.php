@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-// app/Http/Controllers/FlightController.php
-namespace App\Http\Controllers;
-
-use App\Models\Flight;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
 {
     public function index()
     {
-        // Traemos todos los vuelos con su freelancer
-        $flights = Flight::with('freelancer')->get();
+        // Traemos todas las categorías con sus subcategorías y vuelos activos (máx. 6 por categoría)
+        $categories = Category::with(['subcategories.flights' => function ($query) {
+            $query->where('active', true)
+                  ->with('freelancer')
+                  ->inRandomOrder()
+                  ->take(6);
+        }])->get();
 
-        return view('index', compact('flights'));
+        return view('index', compact('categories'));
     }
 }
-

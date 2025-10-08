@@ -3,22 +3,26 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str; // 👈 importa Str para generar slugs
+use Illuminate\Support\Str;
 
 class Subcategory extends Model
 {
-    protected $fillable = [
-        'name',
-        'slug',
-        'id_categorie',
-    ];
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    protected $fillable = ['name', 'slug', 'description', 'id_categorie'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'id_categorie', 'id');
+    }
+
 
     public function flights()
     {
-        return $this->hasMany(Flight::class, 'id_subcategorie');
+        return $this->hasMany(Flight::class, 'id_subcategorie', 'id');
     }
 
-    // 🔥 Genera automáticamente el slug si está vacío
     protected static function boot()
     {
         parent::boot();
@@ -30,7 +34,3 @@ class Subcategory extends Model
         });
     }
 }
-
-
-
-

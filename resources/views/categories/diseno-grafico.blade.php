@@ -1,5 +1,6 @@
 @extends('partials.master')
 @section('content')
+@include('partials.menu')
     {{-- Contenido principal --}}
     <div class="container section-spacing mb-5">
         <h2 class="text-center mb-5">Diseño Grafico</h2>
