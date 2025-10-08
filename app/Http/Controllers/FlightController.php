@@ -17,6 +17,14 @@ class FlightController extends Controller
                   ->take(6);
         }])->get();
 
-        return view('index', compact('categories'));
+
+        // ✅ Vuelos aleatorios globales (para “Servicios que te pueden interesar”)
+    $recommendedFlights = \App\Models\Flight::with('freelancer')
+        ->where('active', true)
+        ->inRandomOrder()
+        ->take(6)
+        ->get();
+
+        return view('index', compact('categories', 'recommendedFlights'));
     }
 }
