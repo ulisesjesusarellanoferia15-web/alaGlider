@@ -80,7 +80,7 @@
                                         @foreach($flights as $flight)
                                         <div class="col">
                                             <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
-                                                <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.jpg') }}"
+                                                <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.png') }}"
                                                     class="card-img-top" alt="{{ $flight->name }}">
                                                 <div class="card-body">
                                                     <div class="d-flex align-items-center mb-2">
