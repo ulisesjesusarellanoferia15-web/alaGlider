@@ -110,19 +110,18 @@
                         </div>
 
                         <!-- Columna lateral de publicidad -->
-                        <div class="col-lg-3 position-relative">
-                            <div class="p-4 rounded-4 text-center text-white sticky-top"
-                                style="background: linear-gradient(135deg,#2563eb,#06b6d4); top: 80px;">
-                                <h4 class="fw-bold mb-3">¡Freelancers disponibles!</h4>
-                                <img src="{{ asset('assets/img/illustrations/pencil-rocket.png') }}" class="img-fluid mb-3" alt="Publicidad">
-                                <a href="#" class="btn btn-light rounded-pill px-4">VER MÁS</a>
+                        <div class="col-lg-3">
+                            <div class="publicidad-lateral">
+                                <h4>¡Freelancers disponibles!</h4>
+                                <a href="#" class="btn">VER MÁS</a>
                             </div>
                         </div>
+
                     </div>
                 </section>
 
                 <!-- SECCIÓN GLIDERS Y RIDERS -->
-                <section class="container my-5">
+                <section class="container my-5 section-gliders">
                     <div class="row align-items-center g-5">
                         <!-- Columna izquierda: Gliders y Riders -->
                         <div class="col-lg-8">
@@ -130,8 +129,7 @@
                                 <!-- Gliders -->
                                 <div class="col-md-6">
                                     <div class="card text-center shadow-sm border-0 rounded-4 p-4 h-100">
-                                        <img src="{{ asset('assets/img/gliders.png') }}" alt="Gliders" class="mx-auto mb-3" width="120">
-                                        <h5 class="fw-bold text-success">GLIDERS</h5>
+                                        <img src="{{ asset('assets/img/alaglider/glaiders.png') }}" alt="Gliders" class="mx-auto mb-3 glider-logo">
                                         <p class="text-muted small">
                                             Da a conocer tu trabajo a miles de RIDERS y comienza a ganar dinero de inmediato.
                                             Incrementa el rango de tus insignias para obtener mejores comisiones de venta.
@@ -144,8 +142,7 @@
                                 <!-- Riders -->
                                 <div class="col-md-6">
                                     <div class="card text-center shadow-sm border-0 rounded-4 p-4 h-100">
-                                        <img src="{{ asset('assets/img/riders.png') }}" alt="Riders" class="mx-auto mb-3" width="120">
-                                        <h5 class="fw-bold text-primary">RIDERS</h5>
+                                        <img src="{{ asset('assets/img/alaglider/raiders.png') }}" alt="Riders" class="mx-auto mb-3 rider-logo">
                                         <p class="text-muted small">
                                             Contrata a miles de freelancers de toda América Latina y sé parte de la comunidad de Riders.
                                             Mejora tu reputación obteniendo fabulosos beneficios.
@@ -158,20 +155,20 @@
 
                         <!-- Columna derecha: Freelancers destacados -->
                         <div class="col-lg-4">
-                            <div class="card shadow-sm border-0 rounded-4 p-4">
+                            <div class="card shadow-sm border-0 rounded-4 freelancers-card">
                                 <h5 class="fw-bold mb-4">FREELANCERS DESTACADOS</h5>
                                 @php
                                 $featured = \App\Models\Flight::where('active', 1)->inRandomOrder()->take(5)->get();
                                 @endphp
 
                                 @foreach($featured as $flight)
-                                <div class="d-flex align-items-center mb-3">
-                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Freelancer" class="rounded-circle me-3" width="40" height="40">
-                                    <div>
+                                <div class="freelancer-item">
+                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Freelancer">
+                                    <div class="info">
                                         <strong>{{ $flight->freelancer->name ?? 'Freelancer' }}</strong><br>
-                                        <small class="text-muted">{{ $flight->subcategory->name ?? 'Categoría' }}</small>
+                                        <small>{{ $flight->subcategory->name ?? 'Categoría' }}</small>
                                     </div>
-                                    <span class="ms-auto text-warning fw-bold">
+                                    <span class="score">
                                         {{ rand(20, 50) }} <i class="fas fa-paper-plane"></i>
                                     </span>
                                 </div>
@@ -182,36 +179,70 @@
                 </section>
 
                 <!-- SECCIÓN DE BANNERS -->
-                <section class="container my-5">
+                <section class="container my-5 section-banners">
                     <div class="row g-4 align-items-stretch">
+
                         <!-- Banner principal -->
                         <div class="col-lg-8">
-                            <div class="p-5 text-white rounded-4 h-100 d-flex flex-column justify-content-center"
-                                style="background: linear-gradient(90deg, #00B4DB, #0083B0); box-shadow: 0 8px 20px rgba(0,0,0,0.1);">
-                                <div class="row align-items-center">
-                                    <div class="col-md-3 text-center">
-                                        <img src="{{ asset('assets/img/illustrations/megaphone.png') }}" alt="Contenido Digital"
-                                            class="img-fluid" style="max-height: 120px;">
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h4 class="fw-semibold mb-3">Creando riqueza y valor<br>a través del contenido digital</h4>
-                                        <a href="#" class="btn btn-outline-light rounded-pill px-4">Sobre Nosotros</a>
-                                    </div>
+                            <div class="banner-principal p-5 text-white rounded-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden">
+                                <img src="{{ asset('assets/img/illustrations/page-pricing-standard.png') }}"
+                                    alt="Contenido Digital"
+                                    class="banner-image">
+                                <div class="banner-content position-relative z-2">
+                                    <h4 class="fw-semibold mb-3">
+                                        Creando riqueza y valor<br>a través del contenido digital
+                                    </h4>
+                                    <button class="btn btn-outline-light rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#aboutModal">
+                                        Sobre Nosotros
+                                    </button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Banner lateral -->
                         <div class="col-lg-4">
-                            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-center text-center">
-                                <img src="{{ asset('assets/img/illustrations/categories-list.png') }}" alt="Ver Categorías"
-                                    class="img-fluid mx-auto mb-3" style="max-height: 100px;">
-                                <h5 class="fw-bold mb-3">Ver Nuestras Categorías</h5>
-                                <a href="{{ route('categories.index') }}" class="btn btn-dark rounded-pill px-4">Categorías</a>
+                            <div class="banner-lateral card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden text-center">
+                                <img src="{{ asset('assets/img/illustrations/girl-unlock-password-light.png') }}"
+                                    alt="Ver Categorías"
+                                    class="banner-image">
+                                <div class="position-relative z-2">
+                                    <h5 class="fw-bold mb-3">Ver Nuestras Categorías</h5>
+                                    <a href="{{ url('/categories/diseno-grafico') }}" class="btn btn-dark rounded-pill px-4">
+                                        Categorías
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- MODAL "Sobre Nosotros" -->
+                <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content rounded-4 border-0 shadow-lg">
+                            <div class="modal-header border-0 pb-0">
+                                <h5 class="modal-title fw-bold" id="aboutModalLabel">Sobre Nosotros</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <img src="{{ asset('assets/img/illustrations/about-us.png') }}"
+                                    class="img-fluid rounded mb-3"
+                                    alt="Sobre Nosotros"
+                                    style="max-height: 250px;">
+                                <p class="text-muted">
+                                    Somos el primer marketplace de contenido digital on demand en español para Latinoamérica.
+                                    Conectamos negocios entre empresas y freelancers para impulsar el talento de habla hispana,
+                                    creando riqueza y valor a través del contenido digital.
+                                </p>
+                            </div>
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
+
 
 
                 <!-- SECCIÓN SERVICIOS QUE TE PUEDEN INTERESAR -->
@@ -259,7 +290,7 @@
                             <div class="p-4 rounded-4 text-center text-white sticky-top"
                                 style="background: linear-gradient(135deg,#2563eb,#06b6d4); box-shadow: 0 8px 20px rgba(0,0,0,0.15); top: 80px;">
                                 <h4 class="fw-bold mb-3">Publicidad</h4>
-                                <img src="{{ asset('assets/img/illustrations/megaphone.png') }}" class="img-fluid mb-3" alt="Publicidad">
+                                <img src="{{ asset('assets/img/illustrations/card-advance-sale.png') }}" class="img-fluid mb-3" alt="Publicidad">
                                 <p>Impulsa tu marca con nosotros</p>
                                 <a href="#" class="btn btn-light rounded-pill px-4">Anunciarme</a>
                             </div>

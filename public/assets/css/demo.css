@@ -759,3 +759,464 @@ body {
   opacity: 1;
 }
 
+/** ===========================
+    SECCIÓN: EXPLORA CATEGORÍAS
+=============================== */
+
+/* --- Tabs compactos --- */
+#categoryTabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+#categoryTabs::-webkit-scrollbar {
+    display: none;
+}
+#categoryTabs .nav-item {
+    flex-shrink: 0;
+}
+#categoryTabs .nav-link {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background-color: #f5f5f5;
+    color: #333;
+    margin-right: 6px;
+    transition: all 0.3s ease;
+}
+#categoryTabs .nav-link:hover {
+    background-color: #e9ecef;
+}
+#categoryTabs .nav-link.active {
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* --- Tarjetas pequeñas --- */
+.ag-card,
+.card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid #e6e6e6;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 100%;
+    background: #fff;
+}
+.ag-card:hover,
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.ag-card img,
+.card img {
+    height: 120px;
+    object-fit: cover;
+    width: 100%;
+}
+.card-body {
+    padding: 0.6rem 0.8rem;
+}
+.card-body h6 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+.card-body p {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 0.4rem;
+}
+
+/* Avatar más pequeño */
+.card-body img.rounded-circle {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Precio y botón */
+.card-body .price {
+    font-size: 0.8rem;
+}
+.card-body .btn {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+}
+
+/* Grid más denso  */
+.category-flights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+/* --- COLUMNA LATERAL DE PUBLICIDAD A LADO DE CATEGORIAS--- */
+.publicidad-lateral {
+    position: sticky;
+    top: 100px;
+    height: 580px; /* 🔹 Altura fija del bloque */
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #2563eb, #06b6d4);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    padding: 2rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Imagen al fondo, abajo del bloque */
+.publicidad-lateral::after {
+    content: "";
+    position: absolute;
+    bottom: 0; /* 🔹 Pegada al fondo */
+    left: 50%;
+    transform: translateX(-50%);
+    background: url('../img/illustrations/pencil-rocket.png') no-repeat bottom center;
+    background-size: 350px auto; /* 🔹 Ajusta este valor para cambiar el tamaño */
+    width: 100%;
+    height: 260px; /* 🔹 Control de altura visible de la imagen */
+    opacity: 1; /* Imagen visible, no tenue */
+    pointer-events: none;
+}
+
+.publicidad-lateral h4 {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    z-index: 2;
+}
+
+.publicidad-lateral p {
+    z-index: 2;
+    margin-bottom: 1.5rem;
+}
+
+.publicidad-lateral .btn {
+    background-color: #fff;
+    color: #2563eb;
+    border: none;
+    border-radius: 50px;
+    padding: 0.6rem 1.4rem;
+    font-weight: 500;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.publicidad-lateral .btn:hover {
+    background-color: #f0f2f5;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 991px) {
+    .publicidad-lateral {
+        position: relative;
+        height: 380px; /* más baja en móviles */
+        margin-top: 1.5rem;
+    }
+
+    .publicidad-lateral::after {
+        background-size: 200px auto;
+        height: 200px;
+    }
+}
+
+/* --- SECCIÓN GLIDERS Y RIDERS --- */
+.section-gliders {
+    margin-top: 80px; /* 🔹 separa del bloque anterior */
+    padding-top: 40px;
+}
+
+/* Tarjetas Glider/Rider */
+.section-gliders .card {
+    transition: transform 0.25s ease;
+    border-radius: 1rem;
+}
+
+.section-gliders .card:hover {
+    transform: translateY(-5px);
+}
+
+/* --- FREELANCERS DESTACADOS --- */
+.freelancers-destacados {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.freelancer-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.freelancer-item img {
+    width: 45px;       /* 🔹 avatar más pequeño */
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.freelancer-item strong {
+    font-size: 0.9rem;
+    color: #222;
+}
+
+.freelancer-item small {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* --- Ajuste general cuando no hay tarjetas arriba --- */
+.section-gliders {
+    min-height: 500px; /* 🔹 evita que se monte hacia arriba */
+}
+
+/* === Ajuste de separación para la sección Gliders/Riders === */
+.section-gliders {
+  margin-top: 20px; /* espacio estándar */
+  position: relative;
+  z-index: 2;
+}
+
+/* Si las tarjetas de arriba son muchas, controla la separación mínima */
+.section-gliders .row {
+  min-height: 420px; /* altura mínima para evitar que se comprima o se desplace demasiado */
+}
+
+/* Asegura que no se pegue con la siguiente sección */
+.section-gliders + section {
+  margin-top: 40px;
+}
+
+/* Ajuste responsivo */
+@media (max-width: 991px) {
+  .section-gliders {
+    margin-top: 40px;
+  }
+  .section-gliders .row {
+    min-height: auto;
+  }
+}
+
+/* =======================================================
+   AJUSTES DEFINITIVOS GLIDERS / RIDERS / FREELANCERS
+   ======================================================= */
+
+/* Sección completa: evita que se monte hacia arriba */
+.section-gliders {
+  margin-top: 100px !important;
+  padding-top: 60px !important;
+  min-height: 500px; /* 🔹 asegura que tenga bloque visible aunque no haya cards arriba */
+}
+
+/* Tarjetas Gliders/Riders */
+.section-gliders .card {
+  transition: transform 0.25s ease;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+.section-gliders .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+/* Freelancers destacados - tamaño avatar y layout */
+.section-gliders .col-lg-4 .card {
+  height: 100%;
+}
+
+.section-gliders .col-lg-4 .card h5 {
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.section-gliders .col-lg-4 .card .d-flex img {
+  width: 45px !important;
+  height: 45px !important;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.section-gliders .col-lg-4 .card .d-flex {
+  align-items: center;
+  gap: 10px;
+}
+
+.section-gliders .col-lg-4 .card .d-flex div strong {
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.section-gliders .col-lg-4 .card .d-flex div small {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Ajuste de espaciado cuando no hay tarjetas arriba */
+.section-gliders {
+  display: block;
+  position: relative;
+}
+
+/* Ajuste responsive */
+@media (max-width: 992px) {
+  .section-gliders {
+    margin-top: 60px !important;
+    padding-top: 30px !important;
+  }
+}
+/* === FIX IMÁGENES GLIDER & RIDER === */
+.section-gliders .card img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain; /* asegura que no se recorte la imagen */
+    margin-bottom: 1rem;
+}
+
+.section-gliders .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    overflow: visible; /* permite que la imagen no se corte */
+    padding-top: 2rem;
+}
+
+.section-gliders .col-md-6 {
+    display: flex;
+    align-items: stretch;
+}
+/* === AJUSTE PERSONALIZADO DE GLIDER Y RIDER === */
+.section-gliders .card img {
+  display: block;
+  margin: 0 auto 1rem auto;
+  object-fit: contain;
+  height: auto;
+}
+
+/* tamaño personalizado */
+.section-gliders img.glider-logo {
+  max-width: 240px; /* ajusta este número según quieras */
+}
+
+.section-gliders img.rider-logo {
+  max-width: 300px; /* ajusta este también */
+}
+
+/* === FREELANCERS DESTACADOS === */
+.freelancer-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.freelancer-item img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.freelancer-item .info {
+  flex-grow: 1;
+}
+
+.freelancer-item strong {
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.freelancer-item small {
+  color: #777;
+  font-size: 0.8rem;
+}
+
+.freelancer-item .score {
+  color: #ff8c1a;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Tarjeta contenedora */
+.freelancers-card {
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.freelancers-card h5 {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  color: #333;
+}
+
+/* === BANNERS PRINCIPAL Y LATERAL === */
+.section-banners {
+  margin-top: 4rem;
+}
+
+.banner-principal,
+.banner-lateral {
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-principal {
+  background: linear-gradient(90deg, #00B4DB, #0083B0);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-height: 280px;
+}
+
+.banner-lateral {
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.banner-image {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 45%;
+  max-height: 300px;
+  object-fit: contain;
+  opacity: 1;
+  z-index: 1;
+}
+
+.banner-content {
+  z-index: 2;
+  position: relative;
+}
+
+.banner-principal h4 {
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
+.banner-lateral h5 {
+  color: #222;
+}
+
+/* Modal personalizado */
+.modal-content {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.modal-body p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
