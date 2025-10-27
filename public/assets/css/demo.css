@@ -394,6 +394,12 @@ body {
 
 
 
+
+
+
+
+
+
 /** ===========================
     ESTILOS FOOTER + CTA
 =============================== */
@@ -851,267 +857,80 @@ body {
     gap: 1rem;
 }
 
-/* --- COLUMNA LATERAL DE PUBLICIDAD A LADO DE CATEGORIAS--- */
-.publicidad-lateral {
-    position: sticky;
-    top: 100px;
-    height: 580px; /* 🔹 Altura fija del bloque */
-    border-radius: 1rem;
-    background: linear-gradient(135deg, #2563eb, #06b6d4);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    color: #fff;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    padding: 2rem 1rem;
-    position: relative;
-    overflow: hidden;
-}
+/* ===============================
+   SECCIÓN GLIDERS / RIDERS / FREELANCERS DESTACADOS
+   =============================== */
 
-/* Imagen al fondo, abajo del bloque */
-.publicidad-lateral::after {
-    content: "";
-    position: absolute;
-    bottom: 0; /* 🔹 Pegada al fondo */
-    left: 50%;
-    transform: translateX(-50%);
-    background: url('../img/illustrations/pencil-rocket.png') no-repeat bottom center;
-    background-size: 350px auto; /* 🔹 Ajusta este valor para cambiar el tamaño */
-    width: 100%;
-    height: 260px; /* 🔹 Control de altura visible de la imagen */
-    opacity: 1; /* Imagen visible, no tenue */
-    pointer-events: none;
-}
-
-.publicidad-lateral h4 {
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    z-index: 2;
-}
-
-.publicidad-lateral p {
-    z-index: 2;
-    margin-bottom: 1.5rem;
-}
-
-.publicidad-lateral .btn {
-    background-color: #fff;
-    color: #2563eb;
-    border: none;
-    border-radius: 50px;
-    padding: 0.6rem 1.4rem;
-    font-weight: 500;
-    z-index: 2;
-    transition: all 0.3s ease;
-}
-
-.publicidad-lateral .btn:hover {
-    background-color: #f0f2f5;
-    transform: translateY(-2px);
-}
-
-@media (max-width: 991px) {
-    .publicidad-lateral {
-        position: relative;
-        height: 380px; /* más baja en móviles */
-        margin-top: 1.5rem;
-    }
-
-    .publicidad-lateral::after {
-        background-size: 200px auto;
-        height: 200px;
-    }
-}
-
-/* --- SECCIÓN GLIDERS Y RIDERS --- */
+/* 🔹 Sección general — fija la posición y mantiene alineación */
 .section-gliders {
-    margin-top: 80px; /* 🔹 separa del bloque anterior */
-    padding-top: 40px;
-}
-
-/* Tarjetas Glider/Rider */
-.section-gliders .card {
-    transition: transform 0.25s ease;
-    border-radius: 1rem;
-}
-
-.section-gliders .card:hover {
-    transform: translateY(-5px);
-}
-
-/* --- FREELANCERS DESTACADOS --- */
-.freelancers-destacados {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.freelancer-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.freelancer-item img {
-    width: 45px;       /* 🔹 avatar más pequeño */
-    height: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-}
-
-.freelancer-item strong {
-    font-size: 0.9rem;
-    color: #222;
-}
-
-.freelancer-item small {
-    font-size: 0.8rem;
-    color: #777;
-}
-
-/* --- Ajuste general cuando no hay tarjetas arriba --- */
-.section-gliders {
-    min-height: 500px; /* 🔹 evita que se monte hacia arriba */
-}
-
-/* === Ajuste de separación para la sección Gliders/Riders === */
-.section-gliders {
-  margin-top: 20px; /* espacio estándar */
+  margin-top: 60px;          /* separación del bloque anterior */
+  padding-top: 20px;
+  min-height: 550px;         /* mantiene espacio fijo aunque cambie el contenido arriba */
   position: relative;
-  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Si las tarjetas de arriba son muchas, controla la separación mínima */
+/* 🔹 Alineación perfecta entre columnas */
 .section-gliders .row {
-  min-height: 420px; /* altura mínima para evitar que se comprima o se desplace demasiado */
+  display: flex;
+  align-items: stretch;      /* alinea verticalmente Gliders y Freelancers */
+  gap: 1.5rem;
 }
 
-/* Asegura que no se pegue con la siguiente sección */
-.section-gliders + section {
-  margin-top: 40px;
-}
-
-/* Ajuste responsivo */
-@media (max-width: 991px) {
-  .section-gliders {
-    margin-top: 40px;
-  }
-  .section-gliders .row {
-    min-height: auto;
-  }
-}
-
-/* =======================================================
-   AJUSTES DEFINITIVOS GLIDERS / RIDERS / FREELANCERS
-   ======================================================= */
-
-/* Sección completa: evita que se monte hacia arriba */
-.section-gliders {
-  margin-top: 100px !important;
-  padding-top: 60px !important;
-  min-height: 500px; /* 🔹 asegura que tenga bloque visible aunque no haya cards arriba */
-}
-
-/* Tarjetas Gliders/Riders */
+/* 🔹 Tarjetas de Gliders y Riders */
 .section-gliders .card {
   transition: transform 0.25s ease;
   border-radius: 1rem;
   background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 2rem;
+  height: 100%;
 }
 
 .section-gliders .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* Freelancers destacados - tamaño avatar y layout */
-.section-gliders .col-lg-4 .card {
-  height: 100%;
-}
-
-.section-gliders .col-lg-4 .card h5 {
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-}
-
-.section-gliders .col-lg-4 .card .d-flex img {
-  width: 45px !important;
-  height: 45px !important;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.section-gliders .col-lg-4 .card .d-flex {
-  align-items: center;
-  gap: 10px;
-}
-
-.section-gliders .col-lg-4 .card .d-flex div strong {
-  font-size: 0.9rem;
-  color: #222;
-}
-
-.section-gliders .col-lg-4 .card .d-flex div small {
-  font-size: 0.8rem;
-  color: #777;
-}
-
-/* Ajuste de espaciado cuando no hay tarjetas arriba */
-.section-gliders {
-  display: block;
-  position: relative;
-}
-
-/* Ajuste responsive */
-@media (max-width: 992px) {
-  .section-gliders {
-    margin-top: 60px !important;
-    padding-top: 30px !important;
-  }
-}
-/* === FIX IMÁGENES GLIDER & RIDER === */
-.section-gliders .card img {
-    max-width: 100%;
-    height: auto;
-    object-fit: contain; /* asegura que no se recorte la imagen */
-    margin-bottom: 1rem;
-}
-
-.section-gliders .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    overflow: visible; /* permite que la imagen no se corte */
-    padding-top: 2rem;
-}
-
-.section-gliders .col-md-6 {
-    display: flex;
-    align-items: stretch;
-}
-/* === AJUSTE PERSONALIZADO DE GLIDER Y RIDER === */
-.section-gliders .card img {
-  display: block;
-  margin: 0 auto 1rem auto;
-  object-fit: contain;
-  height: auto;
-}
-
-/* tamaño personalizado */
+/* 🔹 Imágenes Glider y Rider (ajustables) */
 .section-gliders img.glider-logo {
-  max-width: 240px; /* ajusta este número según quieras */
+  max-width: 240px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
 }
 
 .section-gliders img.rider-logo {
-  max-width: 300px; /* ajusta este también */
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
 }
 
-/* === FREELANCERS DESTACADOS === */
+/* 🔹 Freelancers destacados */
+.freelancers-card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  background: #fff;
+}
+
+.freelancers-card h5 {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  color: #333;
+}
+
 .freelancer-item {
   display: flex;
   align-items: center;
@@ -1120,8 +939,8 @@ body {
 }
 
 .freelancer-item img {
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   object-fit: cover;
   margin-right: 12px;
@@ -1147,67 +966,131 @@ body {
   font-size: 0.9rem;
 }
 
-/* Tarjeta contenedora */
+/* 🔹 Responsive */
+@media (max-width: 991px) {
+  .section-gliders {
+    margin-top: 40px;
+    padding-top: 20px;
+    min-height: auto;
+  }
+
+  .section-gliders .row {
+    flex-direction: column;
+  }
+}
+
+
+
+/* ✅ REPARA el layout horizontal correcto */
+.section-gliders .row {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 1.5rem;
+}
+
+/* ✅ Cada tarjeta ocupa su columna */
+.section-gliders .col-md-6,
+.section-gliders .col-lg-4 {
+  flex: 1 1 0;
+}
+
+/* ✅ Alturas consistentes */
+.section-gliders .card,
 .freelancers-card {
-  border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.freelancers-card h5 {
-  font-weight: 700;
-  font-size: 1rem;
-  margin-bottom: 1.25rem;
-  text-transform: uppercase;
-  color: #333;
+/* ✅ Móvil sigue apilado correctamente */
+@media (max-width: 991px) {
+  .section-gliders .row {
+    flex-direction: column !important;
+    gap: 1.2rem;
+  }
 }
 
-/* === BANNERS PRINCIPAL Y LATERAL === */
+
+
+
+
+
+
+
+/* === SECCIÓN DE BANNERS === */
 .section-banners {
   margin-top: 4rem;
 }
 
-.banner-principal,
-.banner-lateral {
+.banner-principal {
+  background: linear-gradient(90deg, #00B4DB, #0083B0);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  min-height: 280px;
+  border-radius: 1rem;
   position: relative;
   overflow: hidden;
 }
 
-.banner-principal {
-  background: linear-gradient(90deg, #00B4DB, #0083B0);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  min-height: 280px;
-}
-
-.banner-lateral {
-  background: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-.banner-image {
+.banner-principal .banner-image {
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 45%;
+  width: auto;
+  max-width: 45%;
   max-height: 300px;
   object-fit: contain;
-  opacity: 1;
   z-index: 1;
 }
 
-.banner-content {
-  z-index: 2;
+.banner-principal h4,
+.banner-principal button {
   position: relative;
+  z-index: 2;
 }
 
-.banner-principal h4 {
-  font-size: 1.6rem;
-  line-height: 1.3;
-}
-
-.banner-lateral h5 {
+/* --- Banner lateral (Ver Nuestras Categorías) --- */
+.banner-lateral {
+  position: relative;
+  border-radius: 1rem;
+  background: #fff;
   color: #222;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  overflow: hidden;
+  min-height: 250px; /* altura fija para mantener proporción */
 }
+
+/* Imagen de fondo */
+.banner-lateral::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../img/illustrations/cat.png') no-repeat bottom right;
+  background-size: 300px auto; /* 🔹 ajusta el tamaño de la imagen */
+  opacity: .70; /* 🔹 visible */
+  z-index: 0;
+  pointer-events: none; /* 🔹 permite hacer clic en los botones */
+}
+
+.banner-lateral h5,
+.banner-lateral a {
+  position: relative;
+  z-index: 2; /* 🔹 contenido por encima de la imagen */
+}
+
+.banner-lateral .btn {
+  border-radius: 50px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 500;
+}
+
 
 /* Modal personalizado */
 .modal-content {
@@ -1219,4 +1102,315 @@ body {
   font-size: 0.95rem;
   line-height: 1.6;
 }
+
+/* ===============================
+   FIX GLOBAL PARA MODALES BLOQUEADOS
+   =============================== */
+
+/* 🔹 El backdrop debe ser el más alto de toda la página */
+.modal-backdrop.show {
+  opacity: 0.55 !important;
+  z-index: 3000 !important;
+}
+
+/* 🔹 El modal debe estar por encima del layout principal */
+.modal {
+  z-index: 3050 !important;
+  position: fixed !important;
+  pointer-events: auto !important;
+}
+
+/* 🔹 Evita que contenedores padres oculten el modal */
+.layout-page,
+.layout-content,
+.container-xxl,
+.row {
+  overflow: visible !important;
+  position: static !important;
+}
+
+/* 🔹 Previene bloqueo de clics */
+body.modal-open {
+  overflow: hidden !important;
+  padding-right: 0 !important;
+}
+
+/* ===============================
+   FIX PARA MODALES DENTRO DE layout-wrapper
+   =============================== */
+
+/* 🔹 Permite que los modales y su fondo se muestren fuera del layout-wrapper */
+.modal-content {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+/* --- SECCIÓN SERVICIOS QUE TE PUEDEN INTERESAR --- */
+.section-interes {
+  margin-top: 4rem;
+}
+
+/* --- Tarjetas pequeñas como en Explora Categorías --- */
+.section-interes .ag-card {
+  border-radius: 1rem;
+  height: 100%;
+  transition: all 0.25s ease-in-out;
+}
+
+.section-interes .ag-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.section-interes .ag-card-image {
+  height: 160px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* --- Ajuste de los avatares en "Servicios que te pueden interesar" --- */
+.section-interes .ag-card-body img.rounded-circle {
+  width: 24px !important;     /* 🔹 antes era 32px */
+  height: 24px !important;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+
+/* ==========================
+   SERVICIOS QUE TE PUEDEN INTERESAR / PUBLICIDAD
+   ========================== */
+/* ===============================
+   PUBLICIDAD INTERESES - ALINEADA CON LAS TARJETAS
+   =============================== */
+
+/* 🔹 Contenedor principal */
+.section-interes .row {
+  display: flex;
+  align-items: stretch;
+}
+
+/* 🔹 Columna de tarjetas */
+.section-interes .col-lg-9 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 Publicidad lateral */
+.publicidad-interes {
+  flex: 1;
+  align-self: stretch;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 2rem 1rem;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  height: 750px; /* 🔹 igual que el alto aproximado de dos filas de tarjetas */
+}
+
+/* 🔹 Imagen de fondo difuminada */
+.publicidad-interes::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../img/illustrations/card-advance-sale.png') no-repeat center bottom;
+  background-size: cover;
+  filter: blur(3px) brightness(1.1);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* 🔹 Contenido encima del fondo */
+.publicidad-interes h4,
+.publicidad-interes p,
+.publicidad-interes .btn {
+  position: relative;
+  z-index: 2;
+}
+
+/* 🔹 Botón */
+.publicidad-interes .btn {
+  background-color: #fff;
+  color: #2563eb;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.publicidad-interes .btn:hover {
+  background-color: #f0f2f5;
+  transform: translateY(-2px);
+}
+
+/* 🔹 Responsive */
+@media (max-width: 991px) {
+  .publicidad-interes {
+    height: auto;
+    min-height: 320px;
+    margin-top: 1.5rem;
+  }
+}
+
+
+/* ===============================
+   FIX: EXPLORA CATEGORÍAS / FREELANCERS DISPONIBLES
+   =============================== */
+
+/* 🔹 Contenedor principal */
+.section-categorias {
+  margin-top: 4rem;
+}
+
+/* 🔹 Mantiene el espacio fijo de las tarjetas (aun cuando no haya) */
+.section-categorias .tab-content {
+  min-height: 520px; /* Ajusta según la altura de tus tarjetas */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* 🔹 Contenedor de filas de tarjetas */
+.section-categorias .row.row-cols-1.row-cols-md-3.g-4 {
+  min-height: 500px; /* fija el espacio base */
+}
+
+/* 🔹 Publicidad lateral (¡Freelancers disponibles!) */
+.publicidad-lateral {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 770px; /* 🔹 igual que el alto base de .section-categorias */
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #2563eb, #06b6d4);
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 🔹 Imagen del lápiz difuminada como fondo (control de tamaño) */
+.publicidad-lateral::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  background: url('../img/illustrations/pencil-rocket.png') no-repeat bottom center;
+  background-size: 450px auto; /* 🔹 AJUSTA ESTE VALOR para cambiar el tamaño del lápiz */
+  filter: blur(3px) brightness(1.1); /* 🔹 difuminado suave */
+  opacity: 0.8; /* 🔹 controla la visibilidad */
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+/* 🔹 Contenido encima del fondo */
+.publicidad-lateral h4,
+.publicidad-lateral p,
+.publicidad-lateral .btn {
+  position: relative;
+  z-index: 2;
+}
+
+/* 🔹 Botón */
+.publicidad-lateral .btn {
+  background-color: #fff;
+  color: #2563eb;
+  border: none;
+  border-radius: 50px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.publicidad-lateral .btn:hover {
+  background-color: #f0f2f5;
+  transform: translateY(-2px);
+}
+
+/* 🔹 Mensaje de “sin tarjetas” centrado */
+.tab-pane .alert-light {
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #f9fafb;
+  border-radius: 1rem;
+  color: #555;
+}
+
+/* 🔹 Responsive */
+@media (max-width: 991px) {
+  .publicidad-lateral {
+    position: relative;
+    height: 380px;
+    margin-top: 1.5rem;
+  }
+
+  .publicidad-lateral::after {
+    background-size: contain;
+    filter: blur(2px);
+    opacity: 0.6;
+  }
+
+  .section-categorias .tab-content {
+    min-height: auto;
+  }
+}
+
+/* ✅ MODO SUPER COMPACTO */
+
+/* 🔹 Todas las secciones más pegadas */
+section {
+  margin-top: 0.8rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+/* 🔹 Gliders: sin padding superior y casi sin margen */
+.section-gliders {
+  margin-top: 0.2rem !important;
+  padding-top: 0 !important;
+  min-height: 300px !important;
+}
+
+/* 🔹 Freelancers destacados alineado y sin aire extra */
+.section-gliders .row {
+  min-height: 320px !important;
+}
+
+/* 🔹 Tarjetas Gliders/Riders completamente compactas */
+.section-gliders .card {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* 🔹 Espacio debajo ajustado al mínimo */
+.section-gliders + section {
+  margin-top: 0.8rem !important;
+}
+
+/* 🔹 Extra: reduce GAPS internos entre columnas */
+.section-gliders .row {
+  gap: 0.8rem !important;
+}
+
+
+
+
 

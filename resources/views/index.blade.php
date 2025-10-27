@@ -1,6 +1,5 @@
 @extends('partials.master')
 @section('content')
-
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="row g-6">
 
@@ -45,7 +44,7 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row g-6">
                 <!-- SECCIÓN CATEGORÍAS -->
-                <section class="container my-5">
+                <section class="container my-5 section-categorias">
                     <div class="row gx-5">
                         <!-- Columna principal -->
                         <div class="col-lg-9 mb-5">
@@ -179,19 +178,16 @@
                 </section>
 
                 <!-- SECCIÓN DE BANNERS -->
-                <section class="container my-5 section-banners">
+                <section class="container my-5">
                     <div class="row g-4 align-items-stretch">
-
                         <!-- Banner principal -->
                         <div class="col-lg-8">
-                            <div class="banner-principal p-5 text-white rounded-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden">
+                            <div class="p-5 text-white rounded-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden banner-principal">
                                 <img src="{{ asset('assets/img/illustrations/page-pricing-standard.png') }}"
                                     alt="Contenido Digital"
                                     class="banner-image">
-                                <div class="banner-content position-relative z-2">
-                                    <h4 class="fw-semibold mb-3">
-                                        Creando riqueza y valor<br>a través del contenido digital
-                                    </h4>
+                                <div class="position-relative z-2">
+                                    <h4 class="fw-semibold mb-3">Creando riqueza y valor<br>a través del contenido digital</h4>
                                     <button class="btn btn-outline-light rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#aboutModal">
                                         Sobre Nosotros
                                     </button>
@@ -201,79 +197,42 @@
 
                         <!-- Banner lateral -->
                         <div class="col-lg-4">
-                            <div class="banner-lateral card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-center position-relative overflow-hidden text-center">
-                                <img src="{{ asset('assets/img/illustrations/girl-unlock-password-light.png') }}"
-                                    alt="Ver Categorías"
-                                    class="banner-image">
+                            <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-center text-center position-relative overflow-hidden banner-lateral">
+
                                 <div class="position-relative z-2">
                                     <h5 class="fw-bold mb-3">Ver Nuestras Categorías</h5>
-                                    <a href="{{ url('/categories/diseno-grafico') }}" class="btn btn-dark rounded-pill px-4">
-                                        Categorías
-                                    </a>
+                                    <a href="{{ url('/category/diseno-grafico') }}" class="btn btn-dark rounded-pill px-4">Categorías</a>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </section>
 
-                <!-- MODAL "Sobre Nosotros" -->
-                <div class="modal fade" id="aboutModal" tabindex="-1" aria-labelledby="aboutModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                        <div class="modal-content rounded-4 border-0 shadow-lg">
-                            <div class="modal-header border-0 pb-0">
-                                <h5 class="modal-title fw-bold" id="aboutModalLabel">Sobre Nosotros</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                            </div>
-                            <div class="modal-body text-center">
-                                <img src="{{ asset('assets/img/illustrations/about-us.png') }}"
-                                    class="img-fluid rounded mb-3"
-                                    alt="Sobre Nosotros"
-                                    style="max-height: 250px;">
-                                <p class="text-muted">
-                                    Somos el primer marketplace de contenido digital on demand en español para Latinoamérica.
-                                    Conectamos negocios entre empresas y freelancers para impulsar el talento de habla hispana,
-                                    creando riqueza y valor a través del contenido digital.
-                                </p>
-                            </div>
-                            <div class="modal-footer border-0">
-                                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
 
                 <!-- SECCIÓN SERVICIOS QUE TE PUEDEN INTERESAR -->
-                <section class="container my-5">
-                    <div class="row gx-5">
+                <section class="container my-5 section-interes">
+                    <div class="row gx-5 align-items-start">
+
                         <!-- Columna principal -->
                         <div class="col-lg-9 mb-5">
-                            <h2 class="fw-bold mb-4 text-uppercase text-muted small">Servicios que te pueden interesar</h2>
+                            <h3 class="fw-bold mb-4">Servicios que te pueden interesar</h3>
 
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 @foreach($recommendedFlights as $flight)
                                 <div class="col">
-                                    <div class="ag-card shadow-sm border-0 rounded-4 overflow-hidden h-100">
-                                        <div class="carousel slide" data-bs-ride="carousel">
-                                            <div class="carousel-inner">
-                                                <div class="carousel-item active">
-                                                    <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.jpg') }}"
-                                                        class="d-block w-100 ag-card-image" alt="{{ $flight->name }}">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="ag-card-body p-3">
+                                    <div class="card ag-card shadow-sm border-0 rounded-4 overflow-hidden h-100">
+                                        <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.png') }}"
+                                            class="ag-card-image" alt="{{ $flight->name }}">
+                                        <div class="ag-card-body">
                                             <div class="d-flex align-items-center mb-2">
-                                                <img src="{{ asset('assets/img/avatars/1.png') }}" width="32" height="32"
+                                                <img src="{{ asset('assets/img/avatars/1.png') }}" width="28" height="28"
                                                     class="rounded-circle border me-2" alt="Freelancer">
-                                                <span class="fw-bold">{{ $flight->freelancer->name ?? 'Freelancer' }}</span>
+                                                <span class="fw-bold small">{{ $flight->freelancer->name ?? 'Freelancer' }}</span>
                                             </div>
                                             <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
-                                            <p class="text-muted small mb-2">{{ $flight->description ? Str::limit($flight->description, 80) : 'Sin descripción disponible.' }}</p>
-
+                                            <p class="text-muted small mb-2">
+                                                {{ $flight->description ? Str::limit($flight->description, 80) : 'Sin descripción disponible.' }}
+                                            </p>
                                             <div class="d-flex justify-content-between align-items-center">
                                                 <span class="price text-success fw-bold">Desde ${{ $flight->price ?? '30.00' }}</span>
                                                 <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
@@ -286,17 +245,19 @@
                         </div>
 
                         <!-- Columna lateral de publicidad -->
-                        <div class="col-lg-3 position-relative">
-                            <div class="p-4 rounded-4 text-center text-white sticky-top"
-                                style="background: linear-gradient(135deg,#2563eb,#06b6d4); box-shadow: 0 8px 20px rgba(0,0,0,0.15); top: 80px;">
-                                <h4 class="fw-bold mb-3">Publicidad</h4>
-                                <img src="{{ asset('assets/img/illustrations/card-advance-sale.png') }}" class="img-fluid mb-3" alt="Publicidad">
+                        <div class="col-lg-3">
+                            <div class="publicidad-interes">
+                                <h4>Publicidad</h4>
                                 <p>Impulsa tu marca con nosotros</p>
-                                <a href="#" class="btn btn-light rounded-pill px-4">Anunciarme</a>
+                                <a href="#" class="btn">Anunciarme</a>
                             </div>
                         </div>
+
+
+
                     </div>
                 </section>
+
             </div>
         </div>
         @endsection
