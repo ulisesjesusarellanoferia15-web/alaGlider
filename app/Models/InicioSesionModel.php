@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable; // Para autenticación
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 
-class InicioSesionModel extends Model
+class InicioSesionModel extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     protected $table = 'inicio_sesion';
     protected $primaryKey = 'id';
-    public $incrementing = false; // porque será UUID
+    public $incrementing = false;
     protected $keyType = 'string';
 
     protected $fillable = [
@@ -25,9 +26,17 @@ class InicioSesionModel extends Model
         'confirmed',
     ];
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'token_confirmacion',
+        'token_confirmacion_movil',
+    ];
+
     protected static function boot()
     {
         parent::boot();
+
         static::creating(function ($model) {
             if (!$model->id) {
                 $model->id = (string) Str::uuid();
@@ -35,6 +44,7 @@ class InicioSesionModel extends Model
         });
     }
 
+    // Relación con la tabla users
     public function user()
     {
         return $this->hasOne(UserModel::class, 'id_inicio_sesion', 'id');

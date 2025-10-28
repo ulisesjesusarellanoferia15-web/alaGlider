@@ -5,9 +5,7 @@
         <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4 ms-0">
             <a href="{{ url('/') }}" class="app-brand-link">
                 <span class="app-brand-logo demo">
-                    <span class="text-primary">
-                        <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150rem" />
-                    </span>
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo" width="150rem" />
                 </span>
             </a>
 
@@ -27,10 +25,9 @@
             <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 {{-- ============================
-            USUARIOS NO AUTENTICADOS
-        ============================= --}}
+                    USUARIOS NO AUTENTICADOS
+                ============================= --}}
                 @guest
-                <!-- Moneda -->
                 <li class="nav-item dropdown me-3">
                     <a class="nav-link dropdown-toggle btn btn-outline-secondary rounded-pill px-3" href="#" data-bs-toggle="dropdown">
                         $ Moneda
@@ -42,41 +39,35 @@
                     </ul>
                 </li>
 
-                <!-- Conviertete en Glider -->
                 <li class="nav-item me-2">
-                    <a href="javascript:void(0);" class="btn btn-outline-ingresar rounded-pill px-3">Conviertete en Glider</a>
+                    <a href="javascript:void(0);" class="btn btn-outline-ingresar rounded-pill px-3">Conviértete en Glider</a>
                 </li>
 
-                <!-- Ingresar -->
                 <li class="nav-item me-2">
                     <button type="button" class="btn btn-outline-ingresar rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#loginModal">
                         Ingresar
                     </button>
                 </li>
 
-                <!-- Únete -->
                 <li class="nav-item">
                     <button type="button" class="btn btn-unete rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#registerModal">
                         Únete
                     </button>
                 </li>
-
                 @endguest
 
                 {{-- ============================
-            USUARIOS AUTENTICADOS
-        ============================= --}}
+                    USUARIOS AUTENTICADOS
+                ============================= --}}
                 @auth
+
                 <!-- Carrito -->
-                <li class="nav-item me-3">
-                    @if(Route::has('cart.index'))
-                    <a href="{{ route('cart.index') }}" class="btn btn-outline-secondary rounded-pill px-3">
-                        <i class="ti ti-shopping-cart"></i>
-                    </a>
-                    @else
-                    <span class="btn btn-outline-secondary rounded-pill px-3"><i class="ti ti-shopping-cart"></i></span>
-                    @endif
+                <li class="nav-item dropdown me-3">
+                  <span class="nav-link btn btn-outline-secondary rounded-pill px-3 position-relative">
+                    <i class="icon-base ti tabler-shopping-cart icon-md"></i>
+                  </span>
                 </li>
+
 
                 <!-- Moneda -->
                 <li class="nav-item dropdown me-3">
@@ -91,39 +82,92 @@
                 </li>
 
                 <!-- Notificaciones -->
-                <li class="nav-item dropdown me-3">
-                    <a class="nav-link dropdown-toggle btn btn-outline-secondary rounded-pill px-3" href="#" data-bs-toggle="dropdown">
-                        <i class="ti ti-bell"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><span class="dropdown-item-text">Sin notificaciones</span></li>
-                    </ul>
+                <li class="nav-item dropdown me-3 position-relative">
+                  <a class="nav-link dropdown-toggle btn btn-outline-secondary rounded-pill px-3" href="#" data-bs-toggle="dropdown">
+                    <i class="icon-base ti tabler-bell icon-md"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning" style="font-size: 0.6rem;">!</span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><span class="dropdown-item-text">Sin notificaciones</span></li>
+                  </ul>
                 </li>
+                
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                      <img 
+                        src="{{ optional(Auth::user()->user)->picture_profile 
+                                ? asset(optional(Auth::user()->user)->picture_profile) 
+                                : asset('assets/img/avatars/1.png') }}" 
+                        alt="Avatar" 
+                        class="rounded-circle" 
+                        width="40" 
+                        height="40"
+                      />
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item mt-0" href="#">
+                        <div class="d-flex align-items-center">
+                          <div class="flex-shrink-0 me-2">
+                            <div class="avatar avatar-online">
+                              <img 
+                                src="{{ optional(Auth::user()->user)->picture_profile 
+                                        ? asset(optional(Auth::user()->user)->picture_profile) 
+                                        : asset('assets/img/avatars/1.png') }}" 
+                                alt="Avatar" 
+                                class="rounded-circle" 
+                                width="40" 
+                                height="40"
+                              />
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="mb-0">{{ optional(Auth::user()->user)->name ?? 'Sin Nombre' }}</h6>
+                            <small class="text-body-secondary">{{ optional(optional(Auth::user()->user)->profile)->name ?? 'Sin Rol' }}</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
 
-                <!-- Usuario -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle btn btn-outline-secondary rounded-pill px-3" href="#" data-bs-toggle="dropdown">
-                        {{ Auth::user()->username }} ({{ Auth::user()->profile->name ?? 'Sin Rol' }})
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        @if(Route::has('profile.show'))
-                        <li><a class="dropdown-item" href="{{ route('profile.show') }}">Mi perfil</a></li>
-                        @else
-                        <li><span class="dropdown-item-text">Mi perfil</span></li>
-                        @endif
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="dropdown-item text-danger">Cerrar sesión</button>
-                            </form>
-                        </li>
-                    </ul>
+                    <li><div class="dropdown-divider my-1 mx-n2"></div></li>
+
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="icon-base ti tabler-user me-3 icon-md"></i>
+                        <span class="align-middle">Mi Perfil</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="icon-base ti tabler-settings me-3 icon-md"></i>
+                        <span class="align-middle">Configuración</span>
+                      </a>
+                    </li>
+
+                    <li><div class="dropdown-divider my-1 mx-n2"></div></li>
+
+                    <li>
+                      <div class="d-grid px-2 pt-2 pb-1">
+                        <form method="POST" action="{{ route('logout') }}">
+                          @csrf
+                          <button type="submit" class="btn btn-sm btn-danger d-flex w-100">
+                            <small class="align-middle">Cerrar sesión</small>
+                            <i class="icon-base ti tabler-logout ms-2 icon-14px"></i>
+                          </button>
+                        </form>
+                      </div>
+                    </li>
+                  </ul>
                 </li>
                 @endauth
-
+                <!--/ User -->  
             </ul>
         </div>
     </div>

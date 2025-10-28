@@ -31,6 +31,9 @@
 
         <link rel="stylesheet" href="../../assets/vendor/fonts/iconify-icons.css" />
 
+        <!-- Iconos -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
         <!-- Core CSS -->
         <!-- build:css assets/vendor/css/theme.css  -->
 

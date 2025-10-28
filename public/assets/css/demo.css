@@ -551,6 +551,103 @@ body {
   }
 }
 
+/* ===== MODAL DE REGISTRO ===== */
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.btn-success {
+  background-color: #0acf83;
+  border-color: #0acf83;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #09b676;
+  border-color: #09b676;
+}
+
+.modal-content {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.btn-success {
+  background-color: #00c77b;
+  border-color: #00c77b;
+  transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+  background-color: #00b06d;
+  border-color: #00b06d;
+}
+
+.modal-content {
+  border-radius: 1rem;
+}
+
+.form-check-label a {
+  text-decoration: none;
+}
+
+.form-check-label a:hover {
+  text-decoration: underline;
+}
+
+/* Efecto hover para botones de Google y Facebook */
+.btn-social:hover {
+    filter: brightness(0.9); /* Hace el botón un poco más oscuro */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Sombra suave */
+    transition: all 0.3s ease;
+}
+
+input.is-invalid, select.is-invalid {
+    border-color: #dc3545;
+}
+
+/* Estilos de los campos de los formularios */
+.btn-google:hover {
+    background-color: #f5f5f5 !important;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-facebook:hover {
+    background-color: #166fe5 !important;
+    transition: background-color 0.3s ease;
+  }
+
+  .form-control:focus {
+    border-color: #00e676;
+    box-shadow: 0 0 0 0.2rem rgba(0, 230, 118, 0.25);
+  }
+
+  .modal-content {
+    border-radius: 1.5rem;
+  }
+
+/* ✅ Cambia el color de la palomita del checkbox de términos */
+#termsCheck:checked {
+  background-color: #198754 !important; /* mismo verde que los botones */
+  border-color: #198754 !important;
+}
+
+#termsCheck:focus {
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+/* ✅ Checkbox de Recuérdame */
+#remember_me:checked {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+}
+
+#remember_me:focus {
+  box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+
+
 /* ===== BOTONES ===== */
 .menu-inner .menu-link {
   padding: 10px 26px;

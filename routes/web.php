@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
+//use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\FlightController;
@@ -50,7 +51,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 // ===============================
 // LOGOUT
 // ===============================
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 //Route::get('/', [FlightController::class, 'index'])->name('home');

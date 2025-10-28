@@ -46,4 +46,10 @@ class UserModel extends Model
     {
         return $this->belongsTo(InicioSesionModel::class, 'id_inicio_sesion', 'id');
     }
+
+    public function profile()
+    {
+        return $this->belongsTo(UserProfile::class, 'profile_id', 'id');
+    }
+
 }
