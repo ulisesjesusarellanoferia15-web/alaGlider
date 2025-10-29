@@ -41,6 +41,10 @@
     <link rel="stylesheet" href="../../assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
     <link rel="stylesheet" href="../../assets/vendor/fonts/flag-icons.css" />
 
+    <!-- Iconos Tabler -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+
     <!-- Page CSS -->
     <link rel="stylesheet" href="../../assets/vendor/css/pages/cards-advance.css" />
 
