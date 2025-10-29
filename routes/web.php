@@ -53,6 +53,16 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
+Route::get('/glider', function () {
+    return view('glider');
+});
+
+
+
+
+
+
+
 //Route::get('/', [FlightController::class, 'index'])->name('home');
 
 //Route::get('/categories/{id}/subcategories', [SubcategoryController::class, 'byCategory'])

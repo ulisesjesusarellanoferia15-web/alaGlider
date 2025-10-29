@@ -18,7 +18,7 @@ class FlightController extends Controller
         }])->get();
 
 
-        // ✅ Vuelos aleatorios globales (para “Servicios que te pueden interesar”)
+        // Vuelos aleatorios globales (para “Servicios que te pueden interesar”)
     $recommendedFlights = \App\Models\Flight::with('freelancer')
         ->where('active', true)
         ->inRandomOrder()

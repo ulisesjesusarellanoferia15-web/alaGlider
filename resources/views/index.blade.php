@@ -134,7 +134,7 @@
                                             Incrementa el rango de tus insignias para obtener mejores comisiones de venta.
                                             ¡Conviértete en Glider PRO y ten mejores beneficios!
                                         </p>
-                                        <a href="#" class="btn btn-outline-success rounded-pill mt-3">REGÍSTRAME COMO GLIDER</a>
+                                        <a href="{{ url('/glider') }}" class="btn btn-outline-success rounded-pill mt-3">REGÍSTRAME COMO GLIDER</a>
                                     </div>
                                 </div>
 
