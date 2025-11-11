@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Subcategory;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Freelancer;
 
 class Flight extends Model
 {
@@ -39,6 +40,6 @@ class Flight extends Model
     // Relación: pertenece a un freelancer (usuario)
     public function freelancer()
     {
-        return $this->belongsTo(User::class, 'id_freelancer');
+        return $this->belongsTo(\App\Models\Freelancer::class, 'id_freelancer', 'id');
     }
 }

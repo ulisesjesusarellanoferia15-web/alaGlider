@@ -75,28 +75,46 @@
                                 <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                     id="{{ $category->slug }}" role="tabpanel">
                                     @if($flights->count() > 0)
-                                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                                        @foreach($flights as $flight)
-                                        <div class="col">
-                                            <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
-                                                <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.png') }}"
-                                                    class="card-img-top" alt="{{ $flight->name }}">
-                                                <div class="card-body">
-                                                    <div class="d-flex align-items-center mb-2">
-                                                        <img src="{{ asset('assets/img/avatars/1.png') }}" width="32" height="32"
-                                                            class="rounded-circle border me-2" alt="Freelancer">
-                                                        <span class="fw-bold">{{ $flight->freelancer->name ?? 'Freelancer' }}</span>
-                                                    </div>
-                                                    <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
-                                                    <p class="text-muted small mb-2">{{ Str::limit($flight->description, 100, '...') }}</p>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <span class="text-success fw-bold">Desde ${{ $flight->price ?? '30.00' }}</span>
-                                                        <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
+                                    <div class="scroll-area-fija">
+                                        <div class="scroll-interno">
+                                            <div class="row row-cols-1 row-cols-md-3 g-4 m-0">
+                                                @foreach($flights as $flight)
+                                                <div class="col">
+                                                    <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
+                                                        <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.png') }}"
+                                                            class="card-img-top" alt="{{ $flight->name }}">
+                                                        <div class="card-body">
+                                                            @php
+                                                            $user = $flight->freelancer->user ?? null;
+                                                            @endphp
+
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <img src="{{ $user && $user->picture_profile
+                                                                    ? asset('storage/' . ltrim($user->picture_profile, '/'))
+                                                                    : asset('assets/img/avatars/1.png') }}"
+                                                                    width="32" height="32"
+                                                                    class="rounded-circle border me-2"
+                                                                    alt="{{ $user->name ?? 'Usuario' }}">
+
+                                                                <span class="fw-bold">
+                                                                    {{ trim(($user->name ?? '') . ' ' . ($user->lastname ?? '')) ?: 'Usuario' }}
+                                                                </span>
+                                                            </div>
+
+
+
+                                                            <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
+                                                            <p class="text-muted small mb-2">{{ Str::limit($flight->description, 100, '...') }}</p>
+                                                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                                                <span class="text-success fw-bold">Desde ${{ $flight->price ?? '30.00' }}</span>
+                                                                <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                @endforeach
                                             </div>
                                         </div>
-                                        @endforeach
                                     </div>
                                     @else
                                     <div class="alert alert-light text-muted shadow-sm border rounded-3">
@@ -153,27 +171,50 @@
                         </div>
 
                         <!-- Columna derecha: Freelancers destacados -->
+                        <!-- Columna derecha: Freelancers destacados -->
                         <div class="col-lg-4">
-                            <div class="card shadow-sm border-0 rounded-4 freelancers-card">
+                            <div class="card shadow-sm border-0 rounded-4 freelancers-card p-4">
                                 <h5 class="fw-bold mb-4">FREELANCERS DESTACADOS</h5>
+
                                 @php
-                                $featured = \App\Models\Flight::where('active', 1)->inRandomOrder()->take(5)->get();
+                                // Tomamos vuelos activos, con su freelancer y su usuario asociado
+                                $featured = \App\Models\Flight::with('freelancer.user')
+                                ->where('active', 1)
+                                ->inRandomOrder()
+                                ->take(6)
+                                ->get();
                                 @endphp
 
                                 @foreach($featured as $flight)
-                                <div class="freelancer-item">
-                                    <img src="{{ asset('assets/img/avatars/1.png') }}" alt="Freelancer">
-                                    <div class="info">
-                                        <strong>{{ $flight->freelancer->name ?? 'Freelancer' }}</strong><br>
-                                        <small>{{ $flight->subcategory->name ?? 'Categoría' }}</small>
+                                @php
+                                $user = optional($flight->freelancer)->user;
+                                @endphp
+
+                                <div class="freelancer-item d-flex align-items-center justify-content-between mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ $user && $user->picture_profile
+                                            ? asset('storage/' . ltrim($user->picture_profile, '/'))
+                                            : asset('assets/img/avatars/1.png') }}"
+                                            alt="{{ $user->name ?? 'Usuario' }}"
+                                            class="rounded-circle border me-2"
+                                            width="45" height="45">
+
+                                        <div class="info">
+                                            <strong>{{ trim(($user->name ?? '') . ' ' . ($user->lastname ?? '')) ?: 'Usuario' }}</strong><br>
+                                            <small class="text-muted">
+                                                {{ $flight->subcategory->name ?? 'Categoría' }}
+                                            </small>
+                                        </div>
                                     </div>
-                                    <span class="score">
-                                        {{ rand(20, 50) }} <i class="fas fa-paper-plane"></i>
+
+                                    <span class="score text-primary fw-bold">
+                                        0 <i class="fas fa-paper-plane ms-1"></i>
                                     </span>
                                 </div>
                                 @endforeach
                             </div>
                         </div>
+
                     </div>
                 </section>
 
@@ -219,22 +260,33 @@
 
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 @foreach($recommendedFlights as $flight)
+                                @php
+                                $user = optional($flight->freelancer)->user;
+                                @endphp
                                 <div class="col">
                                     <div class="card ag-card shadow-sm border-0 rounded-4 overflow-hidden h-100">
                                         <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.png') }}"
                                             class="ag-card-image" alt="{{ $flight->name }}">
-                                        <div class="ag-card-body">
+                                        <div class="ag-card-body p-3 d-flex flex-column">
                                             <div class="d-flex align-items-center mb-2">
-                                                <img src="{{ asset('assets/img/avatars/1.png') }}" width="28" height="28"
-                                                    class="rounded-circle border me-2" alt="Freelancer">
-                                                <span class="fw-bold small">{{ $flight->freelancer->name ?? 'Freelancer' }}</span>
+                                                <img src="{{ $user && $user->picture_profile
+                                        ? asset('storage/' . ltrim($user->picture_profile, '/'))
+                                        : asset('assets/img/avatars/1.png') }}"
+                                                    width="28" height="28"
+                                                    class="rounded-circle border me-2"
+                                                    alt="{{ $user->name ?? 'Usuario' }}">
+                                                <span class="fw-bold small">
+                                                    {{ trim(($user->name ?? '') . ' ' . ($user->lastname ?? '')) ?: 'Usuario' }}
+                                                </span>
                                             </div>
                                             <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
-                                            <p class="text-muted small mb-2">
+                                            <p class="text-muted small mb-2 flex-grow-1">
                                                 {{ $flight->description ? Str::limit($flight->description, 80) : 'Sin descripción disponible.' }}
                                             </p>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <span class="price text-success fw-bold">Desde ${{ $flight->price ?? '30.00' }}</span>
+                                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                                <span class="price text-success fw-bold">
+                                                    Desde ${{ $flight->price ?? '30.00' }}
+                                                </span>
                                                 <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
                                             </div>
                                         </div>
@@ -252,8 +304,6 @@
                                 <a href="#" class="btn">Anunciarme</a>
                             </div>
                         </div>
-
-
 
                     </div>
                 </section>

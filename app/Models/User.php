@@ -16,14 +16,21 @@ class User extends Authenticatable
     protected $table = 'inicio_sesion';
 
     protected $fillable = [
-        'id', 'username', 'email', 'password'
+        'id',
+        'username',
+        'email',
+        'password'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     public $timestamps = true;
+
+    protected $keyType = 'string';
+    public $incrementing = false;
 }
 
 
