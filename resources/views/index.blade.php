@@ -107,7 +107,7 @@
                                                             <p class="text-muted small mb-2">{{ Str::limit($flight->description, 100, '...') }}</p>
                                                             <div class="d-flex justify-content-between align-items-center mt-auto">
                                                                 <span class="text-success fw-bold">Desde ${{ $flight->price ?? '30.00' }}</span>
-                                                                <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
+                                                                <a href="{{ route('flights.show', $flight->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -287,7 +287,7 @@
                                                 <span class="price text-success fw-bold">
                                                     Desde ${{ $flight->price ?? '30.00' }}
                                                 </span>
-                                                <a href="#" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
+                                                <a href="{{ route('flights.show', $flight->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
                                             </div>
                                         </div>
                                     </div>

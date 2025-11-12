@@ -58,8 +58,10 @@ Route::get('/glider', function () {
     return view('glider');
 });
 
-
-
+// ===============================
+// DETALLE DE VUELO
+// ===============================
+Route::get('/vuelo/{id}', [FlightController::class, 'show'])->name('flights.show');
 
 
 

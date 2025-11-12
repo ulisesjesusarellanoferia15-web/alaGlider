@@ -29,4 +29,14 @@ class FlightController extends Controller
 
         return view('index', compact('categories', 'recommendedFlights'));
     }
+
+    //metodo para detalle de vuelo
+    public function show($id)
+    {
+        $flight = \App\Models\Flight::with(['freelancer.user', 'subcategory', 'category'])
+            ->where('active', true)
+            ->findOrFail($id);
+
+        return view('flights.show', compact('flight'));
+    }
 }
