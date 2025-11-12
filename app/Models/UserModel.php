@@ -16,6 +16,7 @@ class UserModel extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
+        'id',
         'name',
         'lastname',
         'picture_profile',
@@ -23,12 +24,13 @@ class UserModel extends Model
         'state',
         'delegation',
         'sex_id',
+        'profile_id',
+        'status_id',
+        'provider_id',
         'delivery_date',
         'phone',
         'identificate',
-        'provider',
         'social_id',
-        'profile_id',
         'id_inicio_sesion',
     ];
 

@@ -46,14 +46,14 @@ class RegisterController extends Controller
             'lastname' => $request->lastname,
             'picture_profile' => $request->picture_profile ?? null,
             'id_country' => $request->id_country,
-            'state_id' => $request->state_id ?? null,
-            'delegation_id' => $request->delegation_id ?? null,
+            'state' => $request->state ?? null,
+            'delegation' => $request->delegation ?? null,
             'sex_id' => $request->sex_id,
             'delivery_date' => $request->delivery_date ?? null,
             'phone' => $request->phone,
             'identificate' => $request->identificate ?? null,
             'status_id' => 1, // Activo por default
-            'provider_id' => $request->provider ?? null,
+            'provider_id' => 1, // Registro por plataforma
             'social_id' => $request->social_id ?? null,
             'profile_id' => 3, // Rider por default
             'id_inicio_sesion' => $inicioSesion->id,
