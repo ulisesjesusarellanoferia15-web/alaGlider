@@ -1816,6 +1816,103 @@ section {
 
 
 
+/* ====== Detalle de vuelo ====== */
+.flight-detail img.rounded-circle {
+  border: 2px solid #e9ecef;
+}
+
+.flight-detail h2 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.flight-detail .card {
+  border-radius: 1rem;
+}
+
+.flight-detail .btn-success:hover {
+  background-color: #22b96a !important;
+  border-color: #22b96a !important;
+}
+
+/* ====== Pestañas de planes ====== */
+#planTabs {
+  border-bottom: none;
+}
+#planTabs .nav-link {
+  border: none;
+  color: #6c757d;
+  background-color: transparent;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+#planTabs .nav-link.active {
+  color: #28c76f;
+  border-bottom: 2px solid #28c76f;
+}
+#planTabs .nav-link:hover {
+  color: #28c76f;
+}
+
+/* ====== Botones ====== */
+.btn-success {
+  background-color: #28c76f !important;
+  border-color: #28c76f !important;
+  transition: all 0.2s ease;
+}
+.btn-success:hover {
+  background-color: #22b96a !important;
+  border-color: #22b96a !important;
+}
+
+
+/* ======== Header del freelancer ======== */
+.freelancer-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.freelancer-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e4e6eb;
+}
+
+.freelancer-rank {
+  width: 35px;
+  height: auto;
+}
+
+.freelancer-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.freelancer-stats i {
+  font-size: 0.9rem;
+}
+
+.freelancer-stats small {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .freelancer-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .freelancer-stats {
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+}
 
 
 
