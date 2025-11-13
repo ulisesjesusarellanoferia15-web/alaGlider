@@ -2,12 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubcategoryController;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\RegistroGliderController;
+
 
 // ===============================
 // PÁGINA PRINCIPAL
@@ -52,6 +56,27 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 // LOGOUT
 // ===============================
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Google
+Route::get('auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+
+// Facebook
+Route::get('auth/facebook', [SocialAuthController::class, 'redirectToFacebook'])->name('facebook.login');
+Route::get('auth/facebook/callback', [SocialAuthController::class, 'handleFacebookCallback']);
+
+//Editar perfil
+Route::middleware(['auth'])->group(function () {
+    Route::get('/editProfile', [UserProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/editProfile', [UserProfileController::class, 'update'])->name('profile.update');
+});
+
+// Conviértete en Glider
+Route::get('/registro-glider', [RegistroGliderController::class, 'registroGlider'])->name('registro.glider');
+
+Route::post('/glider/step1', [RegistroGliderController::class, 'storeStep1'])->name('glider.store.step1');
+
+
 
 
 Route::get('/glider', function () {

@@ -126,20 +126,21 @@
                 <hr class="flex-grow-1">
               </div>
 
-              <!-- Botones sociales -->
+              <!-- Botones Sociales Registro -->
               <div class="d-grid gap-2 mb-3">
-                <button type="button" class="btn btn-social rounded-pill py-2 fw-semibold"
-                        style="background-color: #E0E0E0; color: #000;">
+                <!-- Google -->
+                <a href="{{ route('google.login') }}" class="btn btn-social rounded-pill py-2 fw-semibold" style="background-color: #E0E0E0; color: #000;">
                   <img src="{{ asset('assets/img/google-icon.png') }}" alt="Google" style="width:20px; height:20px;" class="me-2">
                   Registrarse con Google
-                </button>
+                </a>
 
-                <button type="button" class="btn btn-social rounded-pill py-2 fw-semibold"
-                        style="background-color: #1877F2; color: #fff;">
+                <!-- Facebook -->
+                <a href="{{ route('facebook.login') }}" class="btn btn-social rounded-pill py-2 fw-semibold" style="background-color: #1877F2; color: #fff;">
                   <img src="{{ asset('assets/img/facebook-icon.png') }}" alt="Facebook" style="width:20px; height:20px;" class="me-2">
                   Registrarse con Facebook
-                </button>
+                </a>
               </div>
+
 
               <!-- Enlace a inicio de sesión -->
               <div class="mt-3 text-center">

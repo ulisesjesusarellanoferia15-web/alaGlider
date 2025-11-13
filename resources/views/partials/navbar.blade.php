@@ -1,3 +1,7 @@
+@php
+  use Illuminate\Support\Str;
+@endphp
+
 <!-- Navbar -->
 <nav class="layout-navbar navbar navbar-expand-xl align-items-center" id="layout-navbar">
     <div class="container-xxl">
@@ -101,8 +105,10 @@
                     <div class="avatar avatar-online">
                       <img 
                         src="{{ optional(Auth::user()->user)->picture_profile 
-                                ? asset(optional(Auth::user()->user)->picture_profile) 
-                                : asset('assets/img/avatars/1.png') }}" 
+                            ? (Str::startsWith(optional(Auth::user()->user)->picture_profile, ['http://', 'https://']) 
+                                ? optional(Auth::user()->user)->picture_profile 
+                                : asset('storage/' . optional(Auth::user()->user)->picture_profile)) 
+                            : asset('assets/img/avatars/1.png') }}" 
                         alt="Avatar" 
                         class="rounded-circle" 
                         width="40" 
@@ -118,8 +124,10 @@
                             <div class="avatar avatar-online">
                               <img 
                                 src="{{ optional(Auth::user()->user)->picture_profile 
-                                        ? asset(optional(Auth::user()->user)->picture_profile) 
-                                        : asset('assets/img/avatars/1.png') }}" 
+                                  ? (Str::startsWith(optional(Auth::user()->user)->picture_profile, ['http://', 'https://']) 
+                                      ? optional(Auth::user()->user)->picture_profile 
+                                      : asset('storage/' . optional(Auth::user()->user)->picture_profile)) 
+                                  : asset('assets/img/avatars/1.png') }}" 
                                 alt="Avatar" 
                                 class="rounded-circle" 
                                 width="40" 
@@ -138,9 +146,16 @@
                     <li><div class="dropdown-divider my-1 mx-n2"></div></li>
 
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{{ route('profile.edit') }}">
                         <i class="icon-base ti tabler-user me-3 icon-md"></i>
-                        <span class="align-middle">Mi Perfil</span>
+                        <span class="align-middle">Editar Perfil</span>
+                      </a>
+                    </li>
+
+                    <li>
+                      <a class="dropdown-item" href="{{ route('registro.glider') }}">
+                        <i class="icon-base ti tabler-rocket me-3 icon-md"></i>
+                        <span class="align-middle">Conviértete en Glider</span>
                       </a>
                     </li>
 

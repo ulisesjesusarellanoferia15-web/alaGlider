@@ -78,17 +78,21 @@
               <span class="position-absolute top-50 start-50 translate-middle bg-white px-2">o</span>
             </div>
 
-            <!-- Botones Sociales -->
+            <!-- Botones Sociales Login -->
             <div class="d-grid gap-2">
-              <button type="button" class="btn border rounded-pill py-2 w-100 d-flex align-items-center justify-content-center btn-google">
+              <!-- Google -->
+              <a href="{{ route('google.login') }}" class="btn border rounded-pill py-2 w-100 d-flex align-items-center justify-content-center btn-google">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" width="20" class="me-2">
                 Inicia con Google
-              </button>
-              <button type="button" class="btn text-white rounded-pill py-2 w-100 d-flex align-items-center justify-content-center btn-facebook" style="background-color: #1877f2;">
+              </a>
+
+              <!-- Facebook -->
+              <a href="{{ route('facebook.login') }}" class="btn text-white rounded-pill py-2 w-100 d-flex align-items-center justify-content-center btn-facebook" style="background-color: #1877f2;">
                 <img src="{{ asset('assets/img/facebook-icon.png') }}" alt="Facebook" style="width:20px; height:20px;" class="me-2">
                 Inicia con Facebook
-              </button>
+              </a>
             </div>
+
 
             <!-- Crear cuenta -->
             <div class="text-center mt-4">
