@@ -21,6 +21,7 @@ class FlightController extends Controller
 
 
         // Vuelos aleatorios globales (para “Servicios que te pueden interesar”)
+        $categories = Category::with('subcategories.flights.packages')->get();
         $recommendedFlights = \App\Models\Flight::with('freelancer.user')
             ->where('active', true)
             ->inRandomOrder()
@@ -33,7 +34,8 @@ class FlightController extends Controller
     //metodo para detalle de vuelo
     public function show($id)
     {
-        $flight = \App\Models\Flight::with(['freelancer.user', 'subcategory', 'category'])
+        $categories = Category::with('subcategories.flights.packages')->get();
+        $flight = \App\Models\Flight::with(['freelancer.user', 'subcategory', 'category', 'packages'])
             ->where('active', true)
             ->findOrFail($id);
 

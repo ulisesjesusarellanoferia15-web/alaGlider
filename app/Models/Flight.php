@@ -42,4 +42,10 @@ class Flight extends Model
     {
         return $this->belongsTo(\App\Models\Freelancer::class, 'id_freelancer', 'id');
     }
+
+    // Relación: costo de las tarjetas de vuelo
+    public function packages()
+    {
+        return $this->hasMany(\App\Models\PackagesProducts::class, 'id_flights', 'id');
+    }
 }

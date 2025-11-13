@@ -106,7 +106,11 @@
                                                             <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
                                                             <p class="text-muted small mb-2">{{ Str::limit($flight->description, 100, '...') }}</p>
                                                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                                                <span class="text-success fw-bold">Desde ${{ $flight->price ?? '30.00' }}</span>
+                                                                @php
+                                                                $flyPackage = $flight->packages->where('package_type', 'FLY')->first();
+                                                                @endphp
+                                                                <span class="text-success fw-bold">Desde ${{ number_format($flyPackage->cost ?? 0, 2) }}</span>
+
                                                                 <a href="{{ route('flights.show', $flight->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
                                                             </div>
                                                         </div>
@@ -284,9 +288,10 @@
                                                 {{ $flight->description ? Str::limit($flight->description, 80) : 'Sin descripción disponible.' }}
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                                <span class="price text-success fw-bold">
-                                                    Desde ${{ $flight->price ?? '30.00' }}
-                                                </span>
+                                                @php
+                                                $flyPackage = $flight->packages->where('package_type', 'FLY')->first();
+                                                @endphp
+                                                <span class="text-success fw-bold">Desde ${{ number_format($flyPackage->cost ?? 0, 2) }}</span>
                                                 <a href="{{ route('flights.show', $flight->id) }}" class="btn btn-outline-primary btn-sm rounded-pill">Ver vuelo</a>
                                             </div>
                                         </div>
