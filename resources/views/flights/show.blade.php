@@ -30,17 +30,17 @@
 
                         <div class="d-flex align-items-center me-3">
                             <i class="fas fa-plane me-1 text-primary"></i>
-                            <small>0</small>
+                            <small>| ✈️ 0</small>
                         </div>
 
                         <div class="d-flex align-items-center me-3">
                             <i class="fas fa-box me-1 text-warning"></i>
-                            <small>5 paquetes en fila</small>
+                            <small>| 5 paquetes en fila</small>
                         </div>
 
                         <div class="d-flex align-items-center">
                             <i class="fas fa-clock me-1 text-success"></i>
-                            <small>10 días de espera</small>
+                            <small>| 10 días de espera</small>
                         </div>
                     </div>
                 </div>
@@ -57,7 +57,6 @@
 
             <!-- Descripción -->
             <h4 class="fw-semibold mb-3">Información sobre el servicio</h4>
-            <p class="text-muted">{{ $flight->description ?? 'Sin descripción disponible.' }}</p>
         </div>
 
 
