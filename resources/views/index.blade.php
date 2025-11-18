@@ -71,7 +71,6 @@
                                 @php
                                 $flights = $category->subcategories->flatMap->flights;
                                 @endphp
-
                                 <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
                                     id="{{ $category->slug }}" role="tabpanel">
                                     @if($flights->count() > 0)
@@ -87,7 +86,6 @@
                                                             @php
                                                             $user = $flight->freelancer->user ?? null;
                                                             @endphp
-
                                                             <div class="d-flex align-items-center mb-2">
                                                                 <img src="{{ $user && $user->picture_profile
                                                                     ? asset('storage/' . ltrim($user->picture_profile, '/'))
@@ -100,9 +98,6 @@
                                                                     {{ trim(($user->name ?? '') . ' ' . ($user->lastname ?? '')) ?: 'Usuario' }}
                                                                 </span>
                                                             </div>
-
-
-
                                                             <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
                                                             <p class="text-muted small mb-2">{{ Str::limit($flight->description, 100, '...') }}</p>
                                                             <div class="d-flex justify-content-between align-items-center mt-auto">
