@@ -69,7 +69,7 @@ class CategoryController extends Controller
         $categories = Category::orderBy('name')->get();
 
         // Cargar vuelos relacionados a esa subcategoría
-    $flights = \App\Models\Flight::where('id_subcategorie', $subcategory->id)->get();
+    $flights = \App\Models\Flight::where('id_subcategorie', $subcategory->id)->paginate(6);
 
         return view('categories.subcategories.generic', compact('category', 'subcategory', 'flights', 'subcategorySlug', 'categories'));
     }

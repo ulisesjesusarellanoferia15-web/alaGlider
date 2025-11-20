@@ -1915,6 +1915,75 @@ section {
 }
 
 
+.pagination-simple {
+    gap: 10px;
+}
+
+/* Botones base */
+.pag-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    transition: all .2s ease-in-out;
+}
+
+/* Activo (flecha verde AlaGlider) */
+.pag-active {
+    background-color: #03a8f5;
+    color: white;
+    cursor: pointer;
+}
+
+.pag-active:hover {
+    background-color: #22b863;
+    transform: scale(1.05);
+}
+
+/* Deshabilitado */
+.pag-disabled {
+    background-color: #e6e6e6;
+    color: #afafaf;
+}
+
+/* Texto */
+.pag-text {
+    font-weight: bold;
+    color: #4b4b4b;
+    font-size: 15px;
+}
+
+
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    gap: 5px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 1.8rem;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #FFD700;
+}
+
+
+
+
+
+
 
 
 

@@ -48,4 +48,9 @@ class Flight extends Model
     {
         return $this->hasMany(\App\Models\PackagesProducts::class, 'id_flights', 'id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(FlightReview::class, 'flight_id');
+    }
 }

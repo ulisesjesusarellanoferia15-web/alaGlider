@@ -11,6 +11,8 @@ use App\Http\Controllers\FlightController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\RegistroGliderController;
+use App\Http\Controllers\FlightReviewController;
+
 
 
 // ===============================
@@ -87,6 +89,19 @@ Route::get('/glider', function () {
 // DETALLE DE VUELO
 // ===============================
 Route::get('/vuelo/{id}', [FlightController::class, 'show'])->name('flights.show');
+
+// ===============================
+// comentarios de vuelos
+// ===============================
+Route::post('/flight/{id}/review', [FlightReviewController::class, 'store'])
+    ->middleware('auth')
+    ->name('flight.review');
+
+// ===============================
+// para guardar las reseñas
+// ===============================
+Route::post('/flight/{id}/review', [FlightReviewController::class, 'store'])
+    ->name('reviews.store');
 
 
 

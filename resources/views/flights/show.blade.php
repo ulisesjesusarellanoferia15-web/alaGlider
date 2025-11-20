@@ -61,31 +61,89 @@
 
 
 
+
         <!-- Columna derecha -->
         <div class="col-lg-4">
             <div class="card shadow-sm border-0 p-4 sticky-top">
-
-                <!-- Pestañas de planes -->
-                <ul class="nav nav-tabs justify-content-between mb-3" id="planTabs" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="fly-tab" data-bs-toggle="tab" data-bs-target="#fly" type="button" role="tab">FLY</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="tandem-tab" data-bs-toggle="tab" data-bs-target="#tandem" type="button" role="tab">TANDEM</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#master" type="button" role="tab">MASTER</button>
-                    </li>
-                </ul>
 
                 @php
                 $fly = $flight->packages->firstWhere('package_type', 'FLY');
                 $tandem = $flight->packages->firstWhere('package_type', 'TANDEM');
                 $master = $flight->packages->firstWhere('package_type', 'MASTER');
+
+                // Solo paquetes existentes
+                $available = collect([
+                'FLY' => $fly,
+                'TANDEM' => $tandem,
+                'MASTER' => $master
+                ])->filter();
                 @endphp
 
+                {{-- SI HAY MÁS DE UN PAQUETE → MOSTRAR TABS --}}
+                @if($available->count() > 1)
+                <ul class="nav nav-tabs justify-content-between mb-3" id="planTabs" role="tablist">
+                    @if($fly)
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="fly-tab" data-bs-toggle="tab" data-bs-target="#fly" type="button" role="tab">FLY</button>
+                    </li>
+                    @endif
+
+                    @if($tandem)
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="tandem-tab" data-bs-toggle="tab" data-bs-target="#tandem" type="button" role="tab">TANDEM</button>
+                    </li>
+                    @endif
+
+                    @if($master)
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="master-tab" data-bs-toggle="tab" data-bs-target="#master" type="button" role="tab">MASTER</button>
+                    </li>
+                    @endif
+                </ul>
+                @endif
+
                 <div class="tab-content" id="planTabsContent">
-                    <!-- PLAN FLY -->
+
+                    {{-- 🔥 SOLO UN PAQUETE (SIN TABS) --}}
+                    @if($available->count() == 1)
+
+                    @php
+                    $type = $available->keys()->first();
+                    $pack = $available->first();
+                    @endphp
+
+                    <h5 class="fw-bold text-left mb-3" style="letter-spacing: .5px;">
+                        PAQUETES
+                    </h5>
+
+                    <div class="show active">
+                        <h6 class="fw-bold text-success mb-2 text-center" style="font-size: 1.3rem;">{{ $type }}</h6>
+
+                        <strong class="fs-4 text-success d-block mb-2">
+                            ${{ number_format($pack->cost ?? 0, 2) }} MXN
+                        </strong>
+
+                        <p class="small mb-2"><strong>Descripción:</strong> {{ $pack->description ?? 'Sin descripción' }}</p>
+                        <p class="small mb-1"><i class="far fa-clock me-2"></i> {{ $pack->delivery_days ?? 0 }} días de entrega</p>
+                        <p class="small mb-1"><i class="far fa-edit me-2"></i> {{ $pack->revisions ?? 0 }} revisiones</p>
+                        <p class="small mb-1"><i class="far fa-image me-2"></i> {{ $pack->have_img ? 'Incluye imágenes' : 'Sin imágenes' }}</p>
+                        <p class="small mb-1"><i class="fas fa-sync-alt me-2"></i> Revisiones extra: {{ $pack->extra_revitions ?? 0 }}</p>
+                        <p class="small mb-3"><i class="fas fa-dollar-sign me-2"></i> Costo revisión extra: ${{ number_format($pack->cost_revitions ?? 0, 2) }}</p>
+
+                        <a href="#" class="btn btn-success w-100 mb-2"
+                            style="background-color:#28c76f; border-color:#28c76f;">
+                            Continuar ${{ number_format($pack->cost ?? 0, 2) }} MXN
+                        </a>
+
+                        <a href="#" class="btn btn-outline-secondary w-100">Contactar Vendedor</a>
+
+                    </div>
+
+                    {{-- 🔵 MÚLTIPLES PAQUETES → MANTENEMOS TABS ORIGINALES --}}
+                    @else
+
+                    {{-- TAB FLY --}}
+                    @if($fly)
                     <div class="tab-pane fade show active" id="fly" role="tabpanel">
                         <strong class="fs-4 text-success d-block mb-2">
                             ${{ number_format($fly->cost ?? 0, 2) }} MXN
@@ -95,76 +153,66 @@
                             {{ strtoupper($flight->category->name ?? 'SERVICIO') }}
                         </p>
 
-                        @if($fly)
                         <p class="small mb-2"><strong>Descripción:</strong> {{ $fly->description ?? 'Sin descripción' }}</p>
                         <p class="small mb-1"><i class="far fa-clock me-2"></i> {{ $fly->delivery_days ?? 0 }} días de entrega</p>
                         <p class="small mb-1"><i class="far fa-edit me-2"></i> {{ $fly->revisions ?? 0 }} revisiones</p>
                         <p class="small mb-1"><i class="far fa-image me-2"></i> {{ $fly->have_img ? 'Incluye imágenes' : 'Sin imágenes' }}</p>
                         <p class="small mb-1"><i class="fas fa-sync-alt me-2"></i> Revisiones extra: {{ $fly->extra_revitions ?? 0 }}</p>
                         <p class="small mb-3"><i class="fas fa-dollar-sign me-2"></i> Costo revisión extra: ${{ number_format($fly->cost_revitions ?? 0, 2) }}</p>
-                        @else
-                        <p class="text-muted small">No hay información del paquete Fly.</p>
-                        @endif
 
-                        <a href="#" class="btn btn-success w-100 mb-2"
-                            style="background-color: #28c76f; border-color: #28c76f;">
+                        <a href="#" class="btn btn-success w-100 mb-2" style="background-color:#28c76f;">
                             Continuar ${{ number_format($fly->cost ?? 0, 2) }} MXN
                         </a>
+
                         <a href="#" class="btn btn-outline-secondary w-100">Contactar Vendedor</a>
                     </div>
+                    @endif
 
-
-
-                    <!-- PLAN TANDEM -->
+                    {{-- TAB TANDEM --}}
+                    @if($tandem)
                     <div class="tab-pane fade" id="tandem" role="tabpanel">
                         <strong class="fs-4 text-success d-block mb-2">
                             ${{ number_format($tandem->cost ?? 0, 2) }} MXN
                         </strong>
 
-                        @if($tandem)
                         <p class="small mb-2"><strong>Descripción:</strong> {{ $tandem->description ?? 'Sin descripción' }}</p>
                         <p class="small mb-1"><i class="far fa-clock me-2"></i> {{ $tandem->delivery_days ?? 0 }} días de entrega</p>
                         <p class="small mb-1"><i class="far fa-edit me-2"></i> {{ $tandem->revisions ?? 0 }} revisiones</p>
                         <p class="small mb-1"><i class="far fa-image me-2"></i> {{ $tandem->have_img ? 'Incluye imágenes' : 'Sin imágenes' }}</p>
                         <p class="small mb-1"><i class="fas fa-sync-alt me-2"></i> Revisiones extra: {{ $tandem->extra_revitions ?? 0 }}</p>
                         <p class="small mb-3"><i class="fas fa-dollar-sign me-2"></i> Costo revisión extra: ${{ number_format($tandem->cost_revitions ?? 0, 2) }}</p>
-                        @else
-                        <p class="text-muted small">No hay información del paquete Tandem.</p>
-                        @endif
 
-                        <a href="#" class="btn btn-success w-100 mb-2"
-                            style="background-color: #28c76f; border-color: #28c76f;">
+                        <a href="#" class="btn btn-success w-100 mb-2" style="background-color:#28c76f;">
                             Continuar ${{ number_format($tandem->cost ?? 0, 2) }} MXN
                         </a>
+
                         <a href="#" class="btn btn-outline-secondary w-100">Contactar Vendedor</a>
                     </div>
+                    @endif
 
-
-
-                    <!-- PLAN MASTER -->
+                    {{-- TAB MASTER --}}
+                    @if($master)
                     <div class="tab-pane fade" id="master" role="tabpanel">
                         <strong class="fs-4 text-success d-block mb-2">
                             ${{ number_format($master->cost ?? 0, 2) }} MXN
                         </strong>
 
-                        @if($master)
                         <p class="small mb-2"><strong>Descripción:</strong> {{ $master->description ?? 'Sin descripción' }}</p>
                         <p class="small mb-1"><i class="far fa-clock me-2"></i> {{ $master->delivery_days ?? 0 }} días de entrega</p>
                         <p class="small mb-1"><i class="far fa-edit me-2"></i> {{ $master->revisions ?? 0 }} revisiones</p>
                         <p class="small mb-1"><i class="far fa-image me-2"></i> {{ $master->have_img ? 'Incluye imágenes' : 'Sin imágenes' }}</p>
                         <p class="small mb-1"><i class="fas fa-sync-alt me-2"></i> Revisiones extra: {{ $master->extra_revitions ?? 0 }}</p>
                         <p class="small mb-3"><i class="fas fa-dollar-sign me-2"></i> Costo revisión extra: ${{ number_format($master->cost_revitions ?? 0, 2) }}</p>
-                        @else
-                        <p class="text-muted small">No hay información del paquete Master.</p>
-                        @endif
 
-                        <a href="#" class="btn btn-success w-100 mb-2"
-                            style="background-color: #28c76f; border-color: #28c76f;">
+                        <a href="#" class="btn btn-success w-100 mb-2" style="background-color:#28c76f;">
                             Continuar ${{ number_format($master->cost ?? 0, 2) }} MXN
                         </a>
+
                         <a href="#" class="btn btn-outline-secondary w-100">Contactar Vendedor</a>
                     </div>
+                    @endif
 
+                    @endif
 
                 </div>
 
@@ -172,8 +220,95 @@
         </div>
 
     </div>
-
     <p class="text-muted">{{ $flight->description ?? 'Sin descripción disponible.' }}</p>
+
+    {{-- Sección de Comentarios / Opiniones --}}
+    <div class="mt-5">
+        <h4 class="fw-bold mb-3">Opiniones del servicio</h4>
+
+        {{-- Formulario para escribir reseña (si está autorizado) --}}
+        @auth
+        @if(!isset($puedeCalificar) || $puedeCalificar)
+        <div class="card mb-4 shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="fw-bold mb-3">Escribe tu opinión</h5>
+                <form action="{{ route('reviews.store', $flight->id) }}" method="POST">
+                    @csrf
+                    <!-- Calificación con estrellas -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Calificación</label>
+                        <div class="star-rating">
+
+                            @for($i = 5; $i >= 1; $i--)
+                            <input type="radio" id="estrella{{ $i }}" name="rating" value="{{ $i }}" required>
+                            <label for="estrella{{ $i }}"><i class="fas fa-star"></i></label>
+                            @endfor
+                        </div>
+                    </div>
+
+                    <!-- Comentario -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Comentario</label>
+                        <textarea name="comment" rows="3" class="form-control" required></textarea>
+                    </div>
+
+                    <button class="btn btn-success w-100" style="background-color:#28c76f;">
+                        Enviar reseña
+                    </button>
+
+                </form>
+            </div>
+        </div>
+        @endif
+        @else
+        <p class="text-muted">
+            <a href="{{ route('login') }}">Inicia sesión</a> para dejar una reseña.
+        </p>
+        @endauth
+        {{-- Si existen reseñas: mostrar promedio --}}
+        @if($flight->reviews->count() > 0)
+        @php
+        $average = number_format($flight->reviews->avg('rating'), 1);
+        @endphp
+
+        <div class="d-flex align-items-center mb-3">
+            <div class="me-2">
+                @for($i = 1; $i <= 5; $i++)
+                    <i class="fas fa-star {{ $i <= round($average) ? 'text-warning' : 'text-secondary' }}"></i>
+                    @endfor
+            </div>
+            <strong>{{ $average }} / 5</strong>
+            <span class="text-muted ms-2">({{ $flight->reviews->count() }} opiniones)</span>
+        </div>
+
+        {{-- Listado de comentarios --}}
+        @foreach($flight->reviews as $review)
+        <div class="card mb-3 shadow-sm border-0">
+            <div class="card-body">
+
+                <div class="d-flex justify-content-between">
+                    <strong>{{ $review->user->name ?? 'Usuario' }}</strong>
+                    <small class="text-muted">{{ $review->created_at->format('d M Y') }}</small>
+                </div>
+
+                <div class="mb-2">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <i class="fas fa-star {{ $i <= $review->rating ? 'text-warning' : 'text-secondary' }}"></i>
+                        @endfor
+                </div>
+
+                <p class="mb-0">{{ $review->comment }}</p>
+
+            </div>
+        </div>
+        @endforeach
+
+        @else
+        {{-- Si no hay reseñas --}}
+        <p class="text-muted">Aún no hay comentarios para este servicio.</p>
+        @endif
+    </div>
+
     <!-- 🟦 Tabla comparativa de paquetes -->
     @if($flight->packages && $flight->packages->count() > 0)
     <div class="mt-5">

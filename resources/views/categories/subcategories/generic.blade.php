@@ -13,80 +13,112 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
 
         @foreach($flights as $flight)
-            @php
-                $user = optional($flight->freelancer)->user;
-                $price = $flight->packages->first()->cost ?? '0.00';
-            @endphp
+        @php
+        $user = optional($flight->freelancer)->user;
+        $price = $flight->packages->first()->cost ?? '0.00';
+        @endphp
 
-            <div class="col">
-                <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
 
-                    <!-- Imagen principal -->
-                    <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.png') }}"
-                        class="card-img-top"
-                        alt="{{ $flight->name }}">
 
-                    <div class="card-body">
 
-                        <!-- Avatar + Nombre -->
-                        <div class="d-flex align-items-center mb-2">
 
-                            @if($user && $user->picture_profile)
-                                <img src="{{ asset('storage/' . ltrim($user->picture_profile, '/')) }}"
-                                    width="32" height="32"
-                                    class="rounded-circle border me-2"
-                                    alt="{{ $user->name }}">
-                            @else
-                                <img src="{{ asset('assets/img/avatars/1.png') }}"
-                                    width="32" height="32"
-                                    class="rounded-circle border me-2"
-                                    alt="Usuario">
-                            @endif
+        <div class="col">
+            <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
 
-                            <span class="fw-bold">
-                                {{ $user->name ?? 'Usuario' }}
-                            </span>
-                        </div>
+                <!-- Imagen principal -->
+                <img src="{{ asset($flight->picture_url ?? 'assets/img/front-pages/default.png') }}"
+                    class="card-img-top"
+                    alt="{{ $flight->name }}">
 
-                        <!-- Título -->
-                        <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
+                <div class="card-body">
 
-                        <!-- Descripción -->
-                        <p class="text-muted small mb-2">
-                            {{ Str::limit($flight->description, 100, '...') }}
-                        </p>
+                    <!-- Avatar + Nombre -->
+                    <div class="d-flex align-items-center mb-2">
 
-                        <!-- Footer -->
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="text-success fw-bold">
-                                Desde ${{ $price }}
-                            </span>
+                        @if($user && $user->picture_profile)
+                        <img src="{{ asset('storage/' . ltrim($user->picture_profile, '/')) }}"
+                            width="32" height="32"
+                            class="rounded-circle border me-2"
+                            alt="{{ $user->name }}">
+                        @else
+                        <img src="{{ asset('assets/img/avatars/1.png') }}"
+                            width="32" height="32"
+                            class="rounded-circle border me-2"
+                            alt="Usuario">
+                        @endif
 
-                            <a href="{{ route('flights.show', $flight->id) }}"
-                                class="btn btn-outline-primary btn-sm rounded-pill">
-                                Ver vuelo
-                            </a>
-                        </div>
+                        <span class="fw-bold">
+                            {{ $user->name ?? 'Usuario' }}
+                        </span>
+                    </div>
 
+                    <!-- Título -->
+                    <h6 class="fw-bold mb-1">{{ $flight->name }}</h6>
+
+                    <!-- Descripción -->
+                    <p class="text-muted small mb-2">
+                        {{ Str::limit($flight->description, 100, '...') }}
+                    </p>
+
+                    <!-- Footer -->
+                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                        <span class="text-success fw-bold">
+                            Desde ${{ $price }}
+                        </span>
+
+                        <a href="{{ route('flights.show', $flight->id) }}"
+                            class="btn btn-outline-primary btn-sm rounded-pill">
+                            Ver vuelo
+                        </a>
                     </div>
 
                 </div>
+
             </div>
+        </div>
 
         @endforeach
-
     </div>
 
-    @else
+    <!-- Navegación -->
+    <div class="d-flex justify-content-center mt-4 align-items-center pagination-simple">
 
-        <div class="alert alert-light text-muted shadow-sm border rounded-3 text-center p-4">
-            <i class="fas fa-info-circle me-2"></i>
-            No hay vuelos disponibles en esta subcategoría.
-        </div>
+        {{-- Flecha izquierda --}}
+        @if ($flights->previousPageUrl())
+        <a href="{{ $flights->previousPageUrl() }}" class="pag-btn pag-active shadow-sm">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        @else
+        <span class="pag-btn pag-disabled shadow-sm">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        @endif
+
+        {{-- Texto --}}
+        <span class="pag-text mx-3">
+            Página {{ $flights->currentPage() }} de {{ $flights->lastPage() }}
+        </span>
+
+        {{-- Flecha derecha --}}
+        @if ($flights->nextPageUrl())
+        <a href="{{ $flights->nextPageUrl() }}" class="pag-btn pag-active shadow-sm">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+        @else
+
+        <span class="pag-btn pag-disabled shadow-sm">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+        @endif
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </div>
+    @else
+    <div class="alert alert-light text-muted shadow-sm border rounded-3 text-center p-4">
+        <i class="fas fa-info-circle me-2"></i>
+        No hay vuelos disponibles en esta subcategoría.
+    </div>
 
     @endif
 
 </div>
-
 @endsection
-
