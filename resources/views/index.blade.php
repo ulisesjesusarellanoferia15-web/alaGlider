@@ -43,13 +43,82 @@
 
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row g-6">
+                <!-- ===============================
+📱 VERSIÓN MÓVIL — ICONOS DE CATEGORÍA
+================================ -->
+                <section class="container my-4 d-block d-md-none">
+                    <h3 class="fw-bold mb-3">Explora categorías</h3>
+
+                    <div class="mobile-scroll-container">
+                        @foreach($categories as $category)
+                        <button class="mobile-card" data-target="#{{ $category->slug }}">
+                            <div class="mobile-card-icon">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <span>{{ $category->name }}</span>
+                        </button>
+                        @endforeach
+                    </div>
+                </section>
+
+                <!-- ============================
+📱 VERSIÓN MÓVIL — LISTA DE VUELOS
+(usa los mismos tab-pane del escritorio)
+================================ -->
+                <section class="d-block d-md-none mt-4">
+
+                    <!-- Se mostrarán los vuelos del tab activo -->
+                    <div id="mobile-flight-area">
+                        <!-- El tab-pane activo se insertará aquí automáticamente -->
+                    </div>
+                </section>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+
+                        const mobileArea = document.querySelector("#mobile-flight-area");
+
+                        // ACTIVAR LA PRIMERA CATEGORÍA POR DEFECTO
+                        const firstPane = document.querySelector(".tab-pane");
+                        if (firstPane) {
+                            mobileArea.innerHTML = firstPane.innerHTML;
+                        }
+
+                        // EVENTO DE CLIC EN ICONOS DE CATEGORÍA
+                        document.querySelectorAll('.mobile-card').forEach(card => {
+                            card.addEventListener('click', function() {
+
+                                let target = this.dataset.target;
+
+                                // Seleccionar pane asociado
+                                let pane = document.querySelector(target);
+
+                                if (pane) {
+                                    mobileArea.innerHTML = pane.innerHTML;
+                                    window.scrollTo({
+                                        top: mobileArea.offsetTop - 60,
+                                        behavior: 'smooth'
+                                    });
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+
+
+
+
+
+
+
+
                 <!-- SECCIÓN CATEGORÍAS -->
-                <section class="container my-5 section-categorias">
+                <section class="container my-5 d-none d-md-block section-categorias ">
                     <div class="row gx-5">
                         <!-- Columna principal -->
-                        <div class="col-lg-9 mb-5">
+                        <div class="col-lg-9 mb-5 ">
                             <h2 class="fw-bold mb-4">Explora Categorías</h2>
-
                             <!-- Tabs -->
                             <ul class="nav nav-pills mb-4 flex-wrap" id="categoryTabs" role="tablist">
                                 @foreach($categories as $category)
@@ -76,7 +145,7 @@
                                     @if($flights->count() > 0)
                                     <div class="scroll-area-fija">
                                         <div class="scroll-interno">
-                                            <div class="row row-cols-1 row-cols-md-3 g-4 m-0">
+                                            <div class="row mobile-horizontal row-cols-md-3 g-4 m-0">
                                                 @foreach($flights as $flight)
                                                 <div class="col">
                                                     <div class="card shadow-sm border-0 rounded-4 overflow-hidden h-100">
@@ -310,4 +379,5 @@
 
             </div>
         </div>
+
         @endsection

@@ -1979,6 +1979,83 @@ section {
     color: #FFD700;
 }
 
+/* MOBILE — scroll horizontal de categorías */
+@media (max-width: 768px) {
+
+    .mobile-scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 10px;
+        scroll-snap-type: x mandatory;
+    }
+
+    .mobile-scroll-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .mobile-card {
+        min-width: 120px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px 10px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        text-decoration: none;
+        color: #333;
+        border: none;
+    }
+
+    .mobile-card-icon {
+        font-size: 28px;
+        margin-bottom: 6px;
+        color: #28c76f;
+    }
+
+    /* MOBILE — convertir vuelos en scroll horizontal */
+    #mobile-flight-area .row {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 1rem;
+    }
+
+    #mobile-flight-area .row::-webkit-scrollbar {
+        display: none;
+    }
+
+    #mobile-flight-area .col {
+        min-width: 260px;
+        flex: 0 0 auto !important;
+    }
+}
+@media (max-width: 768px) {
+
+    /* Contenedor que vamos a hacer horizontal */
+    .mobile-horizontal {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden;
+        gap: 1rem;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 10px;
+    }
+
+    .mobile-horizontal::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Cada tarjeta del vuelo */
+    .mobile-horizontal > .col {
+        flex: 0 0 260px !important;
+        max-width: 260px !important;
+        scroll-snap-align: start;
+    }
+}
+
 
 
 
