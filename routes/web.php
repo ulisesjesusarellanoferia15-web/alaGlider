@@ -12,7 +12,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\RegistroGliderController;
 use App\Http\Controllers\FlightReviewController;
-
+use App\Http\Controllers\RegistroGlider2Controller;
+use App\Http\Controllers\RegistroGlider3Controller;
 
 
 // ===============================
@@ -77,6 +78,10 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/registro-glider', [RegistroGliderController::class, 'registroGlider'])->name('registro.glider');
 
 Route::post('/glider/step1', [RegistroGliderController::class, 'storeStep1'])->name('glider.store.step1');
+Route::post('/registro-glider2/store', [RegistroGlider2Controller::class, 'store'])->name('registroGlider2.store');
+Route::post('/glider/step3', [RegistroGlider3Controller::class, 'storeStep3'])->name('glider.store.step3');
+
+
 
 
 
