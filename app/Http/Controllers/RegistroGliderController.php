@@ -86,5 +86,6 @@ class RegistroGliderController extends Controller
         ]);
 
         return redirect()->back()->with('success', 'Paso 1 completado correctamente. Los datos se guardaron.');
+
     }
 }
