@@ -44,8 +44,8 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="row g-6">
                 <!-- ===============================
-📱 VERSIÓN MÓVIL — ICONOS DE CATEGORÍA
-================================ -->
+                VERSIÓN MÓVIL — ICONOS DE CATEGORÍA
+                ================================ -->
                 <section class="container my-4 d-block d-md-none">
                     <h3 class="fw-bold mb-3">Explora categorías</h3>
 
@@ -62,9 +62,8 @@
                 </section>
 
                 <!-- ============================
-📱 VERSIÓN MÓVIL — LISTA DE VUELOS
-(usa los mismos tab-pane del escritorio)
-================================ -->
+                VERSIÓN MÓVIL — LISTA DE VUELOS
+                ================================ -->
                 <section class="d-block d-md-none mt-4">
 
                     <!-- Se mostrarán los vuelos del tab activo -->
@@ -232,7 +231,9 @@
                                             Contrata a miles de freelancers de toda América Latina y sé parte de la comunidad de Riders.
                                             Mejora tu reputación obteniendo fabulosos beneficios.
                                         </p>
-                                        <a href="#" class="btn btn-outline-primary rounded-pill mt-3">REGÍSTRAME COMO RIDER</a>
+                                        <button class="btn btn-outline-primary rounded-pill mt-3" data-bs-toggle="modal" data-bs-target="#registerModal">
+                                            REGÍSTRAME COMO RIDER
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -326,7 +327,7 @@
                         <div class="col-lg-9 mb-5">
                             <h3 class="fw-bold mb-4">Servicios que te pueden interesar</h3>
 
-                            <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <div class="row mobile-horizontal row-cols-md-3 g-4">
                                 @foreach($recommendedFlights as $flight)
                                 @php
                                 $user = optional($flight->freelancer)->user;
