@@ -14,7 +14,7 @@ use App\Http\Controllers\RegistroGliderController;
 use App\Http\Controllers\FlightReviewController;
 use App\Http\Controllers\RegistroGlider2Controller;
 use App\Http\Controllers\RegistroGlider3Controller;
-
+use App\Http\Controllers\CheckoutController;
 
 // ===============================
 // PÁGINA PRINCIPAL
@@ -107,6 +107,29 @@ Route::post('/flight/{id}/review', [FlightReviewController::class, 'store'])
 // ===============================
 Route::post('/flight/{id}/review', [FlightReviewController::class, 'store'])
     ->name('reviews.store');
+
+// ===============================
+// PAGOS
+// ===============================
+
+Route::get('/checkout/stripe/{package}', [CheckoutController::class, 'stripe'])
+    ->name('checkout.stripe');
+
+Route::get('/checkout/mercadopago/{package}', [CheckoutController::class, 'mercadopago'])
+    ->name('checkout.mercadopago');
+
+Route::get('/checkout/paypal/{package}', [CheckoutController::class, 'paypal'])
+    ->name('checkout.paypal');
+
+Route::get('/checkout/success', [CheckoutController::class, 'success'])
+    ->name('checkout.success');
+
+Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])
+    ->name('checkout.cancel');
+
+// Y al final la ruta genérica
+Route::get('/checkout/{flight}/{package}', [CheckoutController::class, 'index'])
+    ->name('checkout.index');
 
 
 

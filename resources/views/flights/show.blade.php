@@ -130,10 +130,11 @@
                         <p class="small mb-1"><i class="fas fa-sync-alt me-2"></i> Revisiones extra: {{ $pack->extra_revitions ?? 0 }}</p>
                         <p class="small mb-3"><i class="fas fa-dollar-sign me-2"></i> Costo revisión extra: ${{ number_format($pack->cost_revitions ?? 0, 2) }}</p>
 
-                        <a href="#" class="btn btn-success w-100 mb-2"
-                            style="background-color:#28c76f; border-color:#28c76f;">
-                            Continuar ${{ number_format($pack->cost ?? 0, 2) }} MXN
+                        <a href="{{ route('checkout.index', [$flight->id, $fly->id]) }}"
+                            class="btn btn-success w-100 mb-2">
+                            Continuar ${{ number_format($fly->cost, 2) }} MXN
                         </a>
+
 
                         <a href="#" class="btn btn-outline-secondary w-100">Contactar Vendedor</a>
 
