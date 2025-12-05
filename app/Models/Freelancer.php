@@ -59,4 +59,11 @@ class Freelancer extends Model
             ->withTimestamps();
     
     }
+    
+    // Relación nueva (para los datos bancarios)
+    public function bankData()
+    {
+        return $this->hasOne(DatosBancarios::class, 'id_freelancer', 'id');
+    }
+
 }

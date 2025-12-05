@@ -15,6 +15,8 @@ use App\Http\Controllers\FlightReviewController;
 use App\Http\Controllers\RegistroGlider2Controller;
 use App\Http\Controllers\RegistroGlider3Controller;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\RegistroGlider4Controller;
+
 
 // ===============================
 // PÁGINA PRINCIPAL
@@ -80,6 +82,9 @@ Route::get('/registro-glider', [RegistroGliderController::class, 'registroGlider
 Route::post('/glider/step1', [RegistroGliderController::class, 'storeStep1'])->name('glider.store.step1');
 Route::post('/registro-glider2/store', [RegistroGlider2Controller::class, 'store'])->name('registroGlider2.store');
 Route::post('/glider/step3', [RegistroGlider3Controller::class, 'storeStep3'])->name('glider.store.step3');
+Route::post('/glider/store-step4', [RegistroGlider4Controller::class, 'store'])->name('glider.store.step4');
+
+
 
 
 

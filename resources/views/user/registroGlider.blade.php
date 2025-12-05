@@ -120,7 +120,7 @@
           </div>
 
           <div class="col-12 text-center mt-4">
-            <button type="submit" id="btn-continuar" class="btn btn-primary rounded-pill px-5">Continuar</button>
+            <button type="submit" id="btn-continuar" class="btn btn-success rounded-pill px-5">Continuar</button>
           </div>
         </div>
       </div>
@@ -148,7 +148,7 @@
           <!-- Tipo de portafolio -->
           <div class="col-md-6">
               <label for="type_briefcase" class="form-label">Tipo de portafolio*</label>
-              <select class="form-select" id="type_briefcase" name="type_briefcase" required>
+              <select class="form-control" id="type_briefcase" name="type_briefcase" required>
                   <option value="">Seleccione una opción</option>
                   <option value="PDF">PDF</option>
                   <option value="URL">URL</option>
@@ -166,7 +166,7 @@
           <!-- Nivel de estudios -->
           <div class="col-md-6">
               <label for="level_education" class="form-label">Nivel de estudios*</label>
-              <select class="form-select" id="level_education" name="level_education" required>
+              <select class="form-control" id="level_education" name="level_education" required>
                   <option value="">Seleccione nivel</option>
                   <option value="Bachillerato">Bachillerato</option>
                   <option value="Licenciatura">Licenciatura</option>
@@ -179,7 +179,7 @@
           <!-- Titulado -->
           <div class="col-md-6 d-flex align-items-end">
               <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="is_titled" name="is_titled" value="1">
+                  <input class="form-check-input skill-checkbox" type="checkbox" id="is_titled" name="is_titled" value="1">
                   <label class="form-check-label" for="is_titled">Estoy titulado</label>
               </div>
           </div>
@@ -206,7 +206,7 @@
                   @foreach(\App\Models\Skill::all() as $skill)
                       <div class="col-md-4">
                           <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="skill_{{ $skill->id }}" name="skills[]" value="{{ $skill->id }}">
+                              <input class="form-check-input skill-checkbox" type="checkbox" id="skill_{{ $skill->id }}" name="skills[]" value="{{ $skill->id }}">
                               <label class="form-check-label" for="skill_{{ $skill->id }}">{{ $skill->name }}</label>
                           </div>
                       </div>
@@ -243,7 +243,7 @@
           </div>
 
           <div class="col-12 text-center mt-4">
-              <button type="submit" id="btn-continuar-step2" class="btn btn-primary rounded-pill px-5">Continuar</button>
+              <button type="submit" id="btn-continuar-step2" class="btn btn-success rounded-pill px-5">Continuar</button>
           </div>
       </form>
     </div>
@@ -256,7 +256,7 @@
       <!-- Tipo de usuario -->
       <div class="mb-3">
           <label class="form-label">¿Eres Freelancer (Glider) o manejas Negocio o Empresa?</label>
-          <select class="form-select" id="type_user" name="type_user_suscribe">
+          <select class="form-control" id="type_user" name="type_user_suscribe">
               <option value="" selected disabled>Selecciona</option>
               <option value="FREELANCER">Freelancer</option>
               <option value="ORGANIZATION">Negocio o empresa</option>
@@ -266,7 +266,7 @@
       <!-- Freelancer - Alta SAT -->
       <div id="sat-question" class="mb-3" style="display:none;">
           <label class="form-label">¿Estás dado de alta en el SAT?</label>
-          <select class="form-select" id="register_sat" name="register_sat">
+          <select class="form-control" id="register_sat" name="register_sat">
               <option value="" selected disabled>Selecciona</option>
               <option value="0">No</option>
               <option value="2">Sí</option>
@@ -285,7 +285,7 @@
             <!-- Tipo de persona -->
             <div class="col-md-6 mb-3">
                 <label class="form-label">Tipo de persona*</label>
-                <select class="form-select" name="type_person" required>
+                <select class="form-control" name="type_person" required>
                     <option value="FISICA">Natural</option>
                     <option value="MORAL">Juridica</option>
                 </select>
@@ -348,7 +348,7 @@
 
         </div>
         
-        <button type="submit" class="btn btn-primary">Continuar</button>
+        <button type="submit" class="btn btn-success">Continuar</button>
       </form>
 
       <!-- Botón continuar para casos sin formulario -->
@@ -356,7 +356,7 @@
           @csrf
           <input type="hidden" name="type_user_suscribe" id="hidden_type_user">
           <input type="hidden" name="register_sat" id="hidden_register_sat">
-          <button type="submit" class="btn btn-primary" id="btn-step3-continue" style="display:none;">Continuar</button>
+          <button type="submit" class="btn btn-success" id="btn-step3-continue" style="display:none;">Continuar</button>
       </form>
     </div>
 
@@ -365,7 +365,81 @@
 
       <h4 class="mb-3">4. Datos Bancarios</h4>
 
-      
+      <form method="POST" action="{{ route('glider.store.step4') }}" enctype="multipart/form-data" class="row g-3">
+        @csrf
+
+        <!-- Número de cuenta -->
+        <div class="col-md-6">
+            <label class="form-label">Número de cuenta*</label>
+            <input 
+                type="text"
+                name="account_number"
+                class="form-control"
+                placeholder="0010001000100010"
+                required>
+        </div>
+
+        <!-- Banco -->
+        <div class="col-md-6">
+          <label class="form-label">Banco*</label>
+          <select name="bank_id" class="form-control" required>
+              <option value="">Selecciona banco</option>
+              @foreach(\App\Models\Bank::all() as $bank)
+                  <option value="{{ $bank->id }}">{{ $bank->name }}</option>
+              @endforeach
+          </select>
+        </div>
+
+        <!-- Clabe interbancaria -->
+        <div class="col-md-6">
+            <label class="form-label">Clabe interbancaria / Tipo de cuenta*</label>
+            <input 
+                type="text"
+                name="clabe"
+                class="form-control"
+                placeholder="18 dígitos"
+                required>
+            <small class="text-muted">Los 18 dígitos</small>
+        </div>
+
+        <!-- Certificación bancaria -->
+        <div class="col-md-6">
+            <label class="form-label">Certificación bancaria*</label>
+            <input 
+                type="file"
+                name="bank_certification"
+                class="form-control"
+                accept="application/pdf"
+                required>
+            <small class="text-muted">
+                No mayor a 3 meses con clave interbancaria, RFC y domicilio visible.
+            </small>
+        </div>
+
+        <!-- Aceptar términos -->
+        <div class="col-md-12 mt-2">
+            <div class="form-check">
+                <input 
+                    type="checkbox"
+                    class="form-check-input skill-checkbox"
+                    id="terms_conditions"
+                    name="terms_conditions"
+                    value="1"
+                    required>
+                <label for="terms_conditions" class="form-check-label text-primary" style="cursor:pointer;">
+                    Acepto términos y condiciones
+                </label>
+            </div>
+        </div>
+
+        <!-- Botón continuar -->
+        <div class="col-12 text-end mt-3">
+            <button type="submit" class="btn btn-success rounded-pill px-4">
+                Continuar
+            </button>
+        </div>
+
+      </form>
     </div>
 
   </div>
@@ -405,6 +479,7 @@
     }
 
 
+    // ---- Logica del paso 2 -----
     // Mostrar input correcto según tipo de portafolio
     const typeSelect = document.getElementById('type_briefcase');
     const fileInput = document.getElementById('projects_file');
